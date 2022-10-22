@@ -9,13 +9,13 @@ Route::get('/', function () {
 });
 
 # Books Panel (Rabbi)
-Route::get('/manage/books', [BooksController::class, 'manage']);
-Route::get('/books/create', [BooksController::class, 'create']);
-Route::post('/books', [BooksController::class, 'store']);
-Route::get('/manage/books/{id}/edit', [BooksController::class, 'edit']);
-Route::put('/books/{id}', [BooksController::class, 'update']);
-Route::delete('/books/{id}', [BooksController::class, 'destroy']);
+Route::get('/manage/books', [BooksController::class, 'manage'])->name('manage.books.index');
+Route::get('/books/create', [BooksController::class, 'create'])->name('manage.books.create');
+Route::post('/books', [BooksController::class, 'store'])->name('manage.books.store');
+Route::get('/manage/books/{id}/edit', [BooksController::class, 'edit'])->name('manage.books.edit');
+Route::put('/books/{id}', [BooksController::class, 'update'])->name('manage.books.update');
+Route::delete('/books/{id}', [BooksController::class, 'destroy'])->name('manage.books.destroy');
 
 # Books Panel Frontend (Rabbi)
-Route::get('/books', [BooksController::class, 'index']);
-Route::get('/books/{id}', [BooksController::class, 'show']);
+Route::get('/books', [BooksController::class, 'index'])->name('books.index');
+Route::get('/books/{id}', [BooksController::class, 'show'])->name('books.show');
