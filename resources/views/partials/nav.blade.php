@@ -12,15 +12,24 @@
 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="nav navbar-nav ml-auto">
-                        <li class="nav-item active">
-                            <a class="nav-link" href="#">Log In</a>
+                        @guest
+                        <li class="nav-item">
+                            {{-- <a class="nav-link" href="{{ route('user.login') }}">Log In</a> --}}
+                            <a class="nav-link" href="{{ route('login') }}">Login</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Register</a>
+                            <a class="nav-link" href="{{ route('register-user') }}">Register</a>
+                            {{-- <a class="nav-link" href="#">Register</a> --}}
                         </li>
+                        
+                        @else
                         <li class="nav-item">
                             <a class="nav-link" href="#">User Profile</a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('signout') }}">Logout</a>
+                        </li>
+                        @endguest
                     </ul>
                 </div>
             </div>
