@@ -15,23 +15,23 @@ class AdminMiddleware
      * @param  \Closure(\Illuminate\Http\Request): (\Illuminate\Http\Response|\Illuminate\Http\RedirectResponse)  $next
      * @return \Illuminate\Http\Response|\Illuminate\Http\RedirectResponse
      */
-    public function handle( Request $request, Closure $next )
+    public function handle(Request $request, Closure $next)
     {
-        // dd($request,$next);
+        // dd($request, $next);
 
-        if ( Auth::check() ) {
+        if (Auth::check()) {
             // admin role ==1
-            if ( Auth::user()->role == '1' ) {
+            if (Auth::user()->role == '1') {
                 // dd($request, Auth::user()->role);
-                return $next( $request );
+                return $next($request);
             } else {
-                return redirect( '/home' )->with( 'message', 'You are not allowed to access this page.' );
+                // return redirect('/home')->with('message', 'You are not allowed to access this page.');
+                return redirect('/home');
             }
         } else {
-            return redirect( '/login' )->with( 'message', 'You are not allowed please login first.' );
+            return redirect('/login')->with('message', 'You are not allowed please login first.');
         }
-        return $next( $request );
-
+        return $next($request);
     }
 }
 

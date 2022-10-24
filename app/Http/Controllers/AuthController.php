@@ -12,120 +12,84 @@ use Illuminate\Support\Facades\Session;
 
 class AuthController extends Controller
 {
-     
-     public function index()
+
+    public function index()
     {
-        return view( 'auth.login' );
+        return view('auth.login');
     }
 
-    public function customLogin( Request $request )
+    public function customLogin(Request $request)
     {
-        $request->validate( [
-            'email'    => 'required',
+        $request->validate([
+            'email' => 'required',
             'password' => 'required',
-        ] );
+        ]);
 
-        $credentials = $request->only( 'email', 'password' );
-
-        //  $id = User::where( 'email', $credentials['email'] )->value( 'id','role' );
-         
-              
-          
-
-        if ( Auth::attempt( $credentials ) ) {
-           
-     
-            return redirect()->intended( 'dashboard' )
-                ->withSuccess( 'Signed in' );
+        $credentials = $request->only('email', 'password');
+        if (Auth::attempt($credentials)) {
+            return redirect()->intended('dashboard')
+                ->withSuccess('Signed in');
         }
 
-        return redirect( "login" )->withSuccess( 'Login details are not valid' );
+
+        return redirect("login");
     }
 
     public function registration()
     {
-        return view( 'auth.registration' );
+        return view('auth.registration');
     }
 
-    public function customRegistration( Request $request )
+    public function customRegistration(Request $request)
     {
-        $request->validate( [
+        $request->validate([
             'name'     => 'required',
             'email'    => 'required|email|unique:users',
+            'address'    => 'required',
             'password' => 'required|min:6',
-        ] );
+        ]);
 
         $data = $request->all();
-        $check = $this->create( $data );
+        $check = $this->create($data);
+        // dd($check);
 
-        // return redirect( "dashboard" )->withSuccess( 'You have signed-in' );
-        return redirect( "dashboard" )->withSuccess( 'You have signed-in' );
+        // return redirect("dashboard")->withSuccess('You have signed-in');
+        return redirect("home");
     }
 
-    public function create( array $data )
+    public function create(array $data)
     {
-        return User::create( [
+        return User::create([
             'name'     => $data['name'],
+            'address'     => $data['address'],
             'email'    => $data['email'],
-            'password' => Hash::make( $data['password'] ),
-        ] );
+            'password' => Hash::make($data['password']),
+        ]);
     }
 
-    public function dashboard()
-    {
-       $id = auth()->user()->id;
-       $role = User::where( 'id', $id )->value('role');
-
-    //    dd($id,$role);
-       
-       if ($role) {
-           return view( 'admin.dashboard' );
-        }else{
-            // dd($role);
-            // return view( 'user.dashboard');
-           return view( 'index');
-        }
-        dd($role);
-
-    if($role){
-
-        if ( Auth::check() ) {
-            return view( 'dashboard' );
-        }
-    }
-
-        return redirect( "login" )->withSuccess( 'You are not allowed to access' );
-    }
-    public function dashboardadmin()
+    public function home() // after logged in redirect user to home page.
     {
 
-        
-       $id = auth()->user()->id;
-       $role = User::where( 'id', $id )->value('role');
+        $id = auth()->user()->id;
+        $role = User::where('id', $id)->value('role');
 
-    //    dd($id,$role);
-       
-           return view( 'admin.dashboard' );
-    
-        
-        
-       
+        // dd("suer :", $id, $role);
 
-    if($role){
-
-        if ( Auth::check() ) {
-            return view( 'dashboard' );
-        }
+        return view('index');
     }
+    public function dashboard() // after logged in redirect admin to dashboard page.
+    {
 
-        return redirect( "login" )->withSuccess( 'You are not allowed to access' );
+        return view('dashboard');
     }
 
     public function signOut()
     {
+
         Session::flush();
         Auth::logout();
 
-        return Redirect( '/' );
+
+        return Redirect('/');
     }
 }

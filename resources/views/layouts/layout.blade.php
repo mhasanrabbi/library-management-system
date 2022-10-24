@@ -25,7 +25,10 @@
 <body>
     <div class="wrapper">
 
+        @if (Auth::user()->role == 1)
         @include('partials.sidebar')
+            
+        @endif
 
 
 

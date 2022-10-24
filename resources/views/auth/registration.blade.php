@@ -17,6 +17,13 @@
                                 @endif
                             </div>
                             <div class="form-group mb-3">
+                                <input type="text" placeholder="Address" id="address" class="form-control"
+                                    name="address" required autofocus>
+                                @if ($errors->has('address'))
+                                <span class="text-danger">{{ $errors->first('address') }}</span>
+                                @endif
+                            </div>
+                            <div class="form-group mb-3">
                                 <input type="text" placeholder="Email" id="email_address" class="form-control"
                                     name="email" required autofocus>
                                 @if ($errors->has('email'))

@@ -11,21 +11,23 @@ use App\Http\Controllers\AuthController;
 
 
 
-Route::get( '/', [AuthController::class, 'index'] )->name( 'login' );
-Route::post( 'custom-login', [AuthController::class, 'customLogin'] )->name( 'login.custom' );
+Route::middleware(['guest'])->group(function () {
+
+    Route::get('/', [AuthController::class, 'index']);
+    Route::get('/login', [AuthController::class, 'index'])->name('login');
+    Route::post('custom-login', [AuthController::class, 'customLogin'])->name('login.custom');
+    Route::get('registration', [AuthController::class, 'registration'])->name('register-user');
+    Route::post('custom-registration', [AuthController::class, 'customRegistration'])->name('register.custom');
+});
+
+
+Route::get('signout', [AuthController::class, 'signOut'])->name('signout');
+
+
 
 Route::middleware(['auth'])->group(function () {
-    Route::get( 'dashboard', [AuthController::class, 'dashboard'] );
-    Route::get( 'registration', [AuthController::class, 'registration'] )->name( 'register-user' );
-    Route::post( 'custom-registration', [AuthController::class, 'customRegistration'] )->name( 'register.custom' );
-    Route::get( 'signout', [AuthController::class, 'signOut'] )->name( 'signout' );
-
+    Route::get('/home', [AuthController::class, 'home'])->name('home');
 });
-Route::middleware(['auth','isadmin'])->group(function () {
-    Route::get( 'dashboard', [AuthController::class, 'dashboardadmin'] );
-    Route::get( 'registration', [AuthController::class, 'registration'] )->name( 'register-user' );
-    Route::post( 'custom-registration', [AuthController::class, 'customRegistration'] )->name( 'register.custom' );
-    Route::get( 'signout', [AuthController::class, 'signOut'] )->name( 'signout' );
-
+Route::middleware(['auth', 'isadmin'])->group(function () {
+    Route::get('/dashboard', [AuthController::class, 'dashboard']);
 });
-
