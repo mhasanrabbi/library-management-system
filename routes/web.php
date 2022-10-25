@@ -1,8 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-<<<<<<< HEAD
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\AuthorController;
 
 
 
@@ -32,7 +32,7 @@ Route::middleware(['auth'])->group(function () {
 Route::middleware(['auth', 'isadmin'])->group(function () {
     Route::get('/dashboard', [AuthController::class, 'dashboard']);
 
-   
+
     //show all authors
     Route::get( '/authors', [AuthorController::class, 'index'] )->name( 'authors.index' );
     //show add author view
@@ -43,19 +43,10 @@ Route::middleware(['auth', 'isadmin'])->group(function () {
 
 });
 
-// Route::resource( 'autor', [AuthController::class] );
-=======
-use App\Http\Controllers\AuthorsController;
 
 
-Route::get('/', function () {
-    return view('index');
-});
-
-//show all authors
-Route::get('/authors', [AuthorsController::class, 'index'])->name('authors.index');
-//show add author view
-Route::get('admin/authors/create', [AuthorsController::class, 'create'])->name('manage.authors.create');
-//store new author
-Route::post('/authors', [AuthorsController::class, 'store'])->name('manage.authors.store');
->>>>>>> feature/authors
+// Route::get('/authors', [AuthorsController::class, 'index'])->name('authors.index');
+// //show add author view
+// Route::get('admin/authors/create', [AuthorsController::class, 'create'])->name('manage.authors.create');
+// //store new author
+// Route::post('/authors', [AuthorsController::class, 'store'])->name('manage.authors.store');

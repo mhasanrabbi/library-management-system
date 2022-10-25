@@ -13,7 +13,7 @@
                     </h4>
                 </div>
                 <div class="col-8">
-                    <form action="{{ route('manage.authors.store') }}" method="post">
+                    <form action="{{ route('authors.store') }}" method="post">
                         @csrf
                         <div class="form-group">
                             <label for="name">Author Name</label>
