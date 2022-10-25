@@ -12,7 +12,7 @@
                     <a href="#">Books</a>
                 </li>
                 <li>
-                    <a href="#">Authors</a>
+                    <a href="{{ route('authors.index') }}">Authors</a>
                 </li>
                 <li>
                     <a href="#">Categories</a>
