@@ -5,3 +5,5 @@
  - [x] Add books
  - [x] Update book data
  - [x] Delete book
+ - [x] On Delete book moved to Trash
+ - [x] From Trash book can be Restored or Permanently Deleted
