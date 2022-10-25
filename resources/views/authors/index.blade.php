@@ -4,7 +4,7 @@
     <div id="content">
 
         @include('authors.partials.nav')
-
+        
         <div class="container">
             <div class="row">
                 @unless(count($authors) == 0)
@@ -27,7 +27,10 @@
                     </div>
                 @endunless
             </div>
+            
+            @include('authors.partials.pagination')
         </div>
+        
 
     </div>
 @endsection
