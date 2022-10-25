@@ -75,6 +75,27 @@ class BooksController extends Controller
     {
         Book::where('id', $id)->delete();
 
-        return redirect()->route('manage.books.index')->with(['message' => 'Books deleted successfully!']);
+        return redirect()->route('manage.books.index')->with(['message' => 'Books moved to trash successfully!']);
+    }
+
+    public function trashed()
+    {
+        $books = Book::onlyTrashed()->get();
+        // dd($books);
+        return view('books.trashed', compact('books'));
+    }
+
+    public function trashedRestore($id)
+    {
+        $book = Book::onlyTrashed()->findOrFail($id);
+        $book->restore($id);
+        return redirect()->route('manage.books.index')->with(['message' => 'Book restored successfully!']);
+    }
+
+    public function trashedDestroy($id)
+    {
+        $book = Book::onlyTrashed()->findOrFail($id);
+        $book->forceDelete();
+        return redirect()->route('books.trashed')->with(['message' => 'Book deleted successfully!']);
     }
 }

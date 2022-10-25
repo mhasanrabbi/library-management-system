@@ -13,13 +13,16 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="nav navbar-nav ml-auto">
                         <li class="nav-item active">
-                            <a class="nav-link" href="/books">Books</a>
+                            <a class="nav-link" href="{{route('books.index')}}">Books</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="/books/create">Add Book</a>
+                            <a class="nav-link" href="{{route('manage.books.create')}}">Add Book</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="/manage/books">Manage Books</a>
+                            <a class="nav-link" href="{{route('manage.books.index')}}">Manage Books</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link btn btn-info text-white" href="{{route('books.trashed')}}">Trash <i class="fas fa-trash"></i></a>
                         </li>
                     </ul>
                 </div>

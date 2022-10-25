@@ -16,6 +16,12 @@ Route::get('/manage/books/{id}/edit', [BooksController::class, 'edit'])->name('m
 Route::put('/books/{id}', [BooksController::class, 'update'])->name('manage.books.update');
 Route::delete('/books/{id}', [BooksController::class, 'destroy'])->name('manage.books.destroy');
 
+# Book Trash
+Route::get('/books/trashed', [BooksController::class, 'trashed'])->name('books.trashed');
+Route::post('/books/trashed/{id}/restore', [BooksController::class, 'trashedRestore'])->name('books.trashed.restore');
+Route::post('/books/trashed/{id}/delete', [BooksController::class, 'trashedDestroy'])->name('books.trashed.destroy');
+
+
 # Books Panel Frontend (Rabbi)
 Route::get('/books', [BooksController::class, 'index'])->name('books.index');
 Route::get('/books/{id}', [BooksController::class, 'show'])->name('books.show');

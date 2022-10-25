@@ -27,6 +27,7 @@ return new class extends Migration
             $table->string('tags')->nullable();
             $table->string('visibility', 255)->nullable();
             $table->dateTime('published_at')->nullable();
+            $table->softDeletes();
             $table->timestamps();
         });
     }
