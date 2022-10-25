@@ -1,6 +1,6 @@
 <nav id="sidebar">
-    <div class="sidebar-header">
-        <h3>এসো বই পড়ি</h3>
+    <div class="sidebar-header text-center">
+        <a href="{{'/'}}"><img style="height: 50px; width: 180px;" src="{{asset('assets/img/lms.png')}}" alt=""></a>
     </div>
 
     <ul class="list-unstyled components">
@@ -25,6 +25,9 @@
                 </li>
                 <li>
                     <a href="#">Book Source</a>
+                </li>
+                <li>
+                    <a href="{{url('rack')}}">Rack</a>
                 </li>
                 <li>
                     <a href="#">Assets</a>
