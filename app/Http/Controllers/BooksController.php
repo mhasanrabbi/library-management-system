@@ -22,7 +22,6 @@ class BooksController extends Controller
         $data = [
             'books' => Book::orderBy('id', 'desc')->paginate(10),
         ];
-
         return view('books.manage', $data);
     }
 
@@ -37,7 +36,13 @@ class BooksController extends Controller
 
         $formRequest = $request->validate([
             'title' => 'required',
-            'description' => 'required'
+            'description' => 'required',
+            'isbn' => 'required|numeric',
+            'category' => 'required',
+            'author' => 'required',
+            'total_books' => 'required|numeric',
+            'book_source' => 'required',
+            'rack_no' => 'required'
         ]);
 
         Book::create($formRequest);
@@ -63,19 +68,25 @@ class BooksController extends Controller
     {
         $formRequest = $request->only([
             'title',
-            'description'
+            'description',
+            'isbn',
+            'category',
+            'author',
+            'total_books',
+            'book_source',
+            'rack_no'
         ]);
 
         Book::where('id', $id)->update($formRequest);
 
-        return redirect()->route('manage.books.index')->with(['message' => 'Books updated successfully!']);
+        return redirect()->route('manage.books.index')->with(['message' => 'Book updated successfully!']);
     }
 
     public function destroy($id)
     {
         Book::where('id', $id)->delete();
 
-        return redirect()->route('manage.books.index')->with(['message' => 'Books moved to trash successfully!']);
+        return redirect()->route('manage.books.index')->with(['message' => 'Book has been moved to trash!']);
     }
 
     public function trashed()

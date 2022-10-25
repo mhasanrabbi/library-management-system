@@ -28,9 +28,13 @@
                 <table class="table table-striped table-hover table-bordered text-center">
                     <thead class="table bg-secondary text-white">
                         <tr>
-                            <th scope="col">#</th>
+                            <th scope="col">ISBN</th>
                             <th scope="col">Title</th>
-                            <th scope="col">Description</th>
+                            <th scope="col">Category</th>
+                            <th scope="col">Author</th>
+                            <th scope="col">Total Books</th>
+                            <th scope="col">Book Source</th>
+                            <th scope="col">Rack No.</th>
                             <th scope="col">Created_at</th>
                             <th scope="col">Edit</th>
                             <th scope="col">Delete</th>
@@ -40,9 +44,13 @@
                         @unless(empty($books))
                         @foreach($books as $book)
                         <tr>
-                            <th scope="row">{{ $book->id }}</th>
+                            <th scope="row">{{ $book->isbn }}</th>
                             <td>{{ $book->title }}</td>
-                            <td>{{ $book->description }}</td>
+                            <td>{{ $book->category }}</td>
+                            <td>{{ $book->author }}</td>
+                            <td>{{ $book->total_books }}</td>
+                            <td>{{ $book->book_source }}</td>
+                            <td>{{ $book->rack_no }}</td>
                             <td>{{ $book->created_at }}</td>
                             <td class="text-center text-success">
                                 <a href="{{ route('manage.books.edit', $book->id) }}" class="btn btn-success"><i

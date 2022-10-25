@@ -51,7 +51,7 @@
                         <div class="col-6">
                             <div class="mb-3">
                                 <label for="isbn" class="form-label">ISBN</label>
-                                <input type="text" class="form-control" id="isbn" placeholder="ISBN" name="isbn">
+                                <input type="number" class="form-control" id="isbn" placeholder="ISBN" name="isbn">
                             </div>
                         </div>
                         <div class="col-6">
@@ -69,21 +69,27 @@
                         <div class="col-6">
                             <div class="mb-3">
                                 <label for="total_books" class="form-label">Total Books</label>
-                                <input type="text" class="form-control" id="total_books" placeholder="Total Books" name="total_books">
+                                <input type="number" class="form-control" id="total_books" placeholder="Total Books" name="total_books">
                             </div>
                         </div>
                         <div class="col-6">
                             <div class="mb-3">
                                 <label for="book_source_id" class="form-label">Book Source</label>
-                                <input type="text" class="form-control" id="book_source_id" placeholder="Book Source" name="book_source_id">
+                                <input type="text" class="form-control" id="book_source_id" placeholder="Book Source" name="book_source">
                             </div>
                         </div>
                         <div class="col-6">
                             <div class="mb-3">
                                 <label for="rack" class="form-label">Rack Number</label>
-                                <input type="text" class="form-control" id="rack" placeholder="Rack Number" name="rack">
+                                <input type="number" class="form-control" id="rack" placeholder="Rack Number" name="rack_no">
                             </div>
                         </div>
+                        {{-- <div class="col-6">
+                            <div class="mb-3">
+                                <label for="available" class="form-label">Available</label>
+                                <input type="text" class="form-control" id="rack" placeholder="Available" name="available">
+                            </div>
+                        </div> --}}
                     </div>
 
                     <div class="mb-3">
