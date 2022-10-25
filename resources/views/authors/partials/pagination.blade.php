@@ -8,7 +8,8 @@
 
         @for ($page = 1; $page <= $authors->lastPage(); $page++)
             <li class="page-item">
-                <a class="page-link" href="{{ $authors->path() . '?' . $authors->getPageName() . '=' . $page }}">{{ $page }}</a>
+                <a class="page-link"
+                    href="{{ $authors->path() . '?' . $authors->getPageName() . '=' . $page }}">{{ $page }}</a>
             </li>
         @endfor
 

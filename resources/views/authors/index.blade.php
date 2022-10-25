@@ -4,7 +4,7 @@
     <div id="content">
 
         @include('authors.partials.nav')
-        
+
         <div class="container">
             <div class="row">
                 @unless(count($authors) == 0)
@@ -12,7 +12,7 @@
                         <div class="col-4 mb-4">
                             <div class="card">
                                 <div class="card-body" style="background-color: #c7ecee">
-                                    <h4 class="text-center" style="color: #535c68">{{ $author->name }}</h4>
+                                    <h4 class="text-center" style="color: #535c68">{{ $author->author_name }}</h4>
                                 </div>
                             </div>
                         </div>
@@ -27,10 +27,10 @@
                     </div>
                 @endunless
             </div>
-            
+
             @include('authors.partials.pagination')
         </div>
-        
+
 
     </div>
 @endsection
