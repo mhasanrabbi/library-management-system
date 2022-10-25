@@ -30,4 +30,16 @@ Route::middleware(['auth'])->group(function () {
 });
 Route::middleware(['auth', 'isadmin'])->group(function () {
     Route::get('/dashboard', [AuthController::class, 'dashboard']);
+
+   
+    //show all authors
+    Route::get( '/authors', [AuthorController::class, 'index'] )->name( 'authors.index' );
+    //show add author view
+    Route::get( '/authors/create', [AuthorController::class, 'create'] )->name( 'authors.create' );
+    //store new author
+    Route::post( '/authors', [AuthorController::class, 'store'] )->name( 'authors.store' );
+
+
 });
+
+// Route::resource( 'autor', [AuthController::class] );
