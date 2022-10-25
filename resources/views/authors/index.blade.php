@@ -3,7 +3,7 @@
 @section('content')
     <div id="content">
 
-        @include('authors.partials.nav')
+        @include('partials.nav')
 
         <div class="container">
             <div class="row">

@@ -10,9 +10,12 @@
             <ul class="collapse list-unstyled" id="homeSubmenu">
                 <li>
                     <a href="#">Books</a>
+                    {{-- <a  class="nav-link {{ request()->is('contract/generate1') ? 'active' : '' }}"
+                        href="{{ route('generatepdf_ALL') }}" target="_blank"><i class="fa-regular fa-file-pdf"></i>&nbsp;Alle
+                        Download</a> --}}
                 </li>
                 <li>
-                    <a href="{{ route('authors.index') }}">Authors</a>
+                    <a class="nav-link {{ request()->is('/authors') ? 'active' : '' }}" href="{{ route('authors.index') }}">Authors</a>
                 </li>
                 <li>
                     <a href="#">Categories</a>
