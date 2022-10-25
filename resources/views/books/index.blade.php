@@ -18,5 +18,6 @@
             </div>
             @endforeach
         </div>
+        @include('books.partials.pagination')
     </div>
     @endsection

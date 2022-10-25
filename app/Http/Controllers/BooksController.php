@@ -11,7 +11,7 @@ class BooksController extends Controller
     {
         $data = [
             'pageTitle' => 'এসো বই পড়ি | Book List',
-            'books' => Book::latest()->get()
+            'books' => Book::latest()->paginate(10)
         ];
 
         return view('books.index', $data);
@@ -80,7 +80,7 @@ class BooksController extends Controller
 
     public function trashed()
     {
-        $books = Book::onlyTrashed()->get();
+        $books = Book::onlyTrashed()->latest()->paginate(10);
         // dd($books);
         return view('books.trashed', compact('books'));
     }

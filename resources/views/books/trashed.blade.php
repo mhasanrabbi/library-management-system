@@ -94,5 +94,6 @@
                 </table>
             </div>
         </div>
+        @include('books.partials.pagination')
     </div>
     @endsection
