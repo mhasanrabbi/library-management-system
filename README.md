@@ -1,6 +1,6 @@
 # এসো বই পড়ি
 
-### Feature/Books-Crud
+### Feature/Books
  - [x] Retrieve and Render All Books
  - [x] Add books
  - [x] Update book data
