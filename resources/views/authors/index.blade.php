@@ -41,6 +41,15 @@
     </div>
 @endsection
 
+@section('scripts')
+    <script type="text/javascript">
+        $("document").ready(function() {
+            setTimeout(() => {
+                $("#flash").remove();
+            }, 2000);
+        });
+    </script>
+@endsection
 
 <!--Authors Modal -->
 <div class="modal fade" id="authorModal" tabindex="-1" role="dialog" aria-labelledby="authorModalLabel"

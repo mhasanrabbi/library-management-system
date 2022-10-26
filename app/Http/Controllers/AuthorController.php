@@ -37,7 +37,7 @@ class AuthorController extends Controller
     public function manage() {
         return view('authors.manage', [
             'pageTitle' => 'Manage Authors',
-            'authors' => Author::latest()->paginate(8)
+            'authors' => Author::latest()->paginate(7)
         ]);
     }
 }
