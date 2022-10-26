@@ -32,4 +32,12 @@ class AuthorController extends Controller
         Author::create($formRequest);
         return redirect()->route('authors.index')->with('message', 'Author created successfully!');
     }
+
+    //show all author for manage
+    public function manage() {
+        return view('authors.manage', [
+            'pageTitle' => 'Manage Authors',
+            'authors' => Author::latest()->paginate(8)
+        ]);
+    }
 }

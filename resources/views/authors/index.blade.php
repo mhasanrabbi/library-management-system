@@ -1,6 +1,6 @@
 @extends('layouts.layout')
 @section('content')
-<div id="content">
+    <div id="content">
         @include('authors.partials.message')
         @include('authors.partials.nav')
 
@@ -54,7 +54,7 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <form action="{{ route('manage.authors.store') }}" method="post">
+            <form action="{{ route('authors.store') }}" method="post">
                 @csrf
                 <div class="modal-body">
                     <div class="form-group">
