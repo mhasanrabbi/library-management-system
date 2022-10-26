@@ -7,9 +7,18 @@
 
         <div class="container">
             <div class="row">
+                <div class="col mb-3">
+                    <h4 style="background-color: #f5f6fa" class="text-right p-2">
+                        <button type="button" class="btn btn-outline-primary" data-toggle="modal" data-target="#authorModal">
+                            <i class="fas fa-plus-square"></i> New Author
+                        </button>
+                    </h4>
+                </div>
+            </div>
+            <div class="row">
                 @unless(count($authors) == 0)
                     @foreach ($authors as $author)
-                        <div class="col-4 mb-4">
+                        <div class="col-4 mb-3">
                             <div class="card">
                                 <div class="card-body" style="background-color: #c7ecee">
                                     <h4 class="text-center" style="color: #535c68">{{ $author->author_name }}</h4>
@@ -34,3 +43,35 @@
 
     </div>
 @endsection
+
+
+<!--Authors Modal -->
+<div class="modal fade" id="authorModal" tabindex="-1" role="dialog" aria-labelledby="authorModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="authorModalLabel" style="color: #487eb0"><i class="fas fa-plus-square"></i>
+                    New Author</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form action="{{ route('manage.authors.store') }}" method="post">
+                @csrf
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label for="name">Author Name</label>
+                        <input type="text" name="author_name" class="form-control" id="name"
+                            placeholder="Enter author name">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-outline-primary"><i class="fas fa-plus-square"></i>
+                        Author</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

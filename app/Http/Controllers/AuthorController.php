@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Author;
 use Illuminate\Http\Request;
 
-class AuthorsController extends Controller
+class AuthorController extends Controller
 {
     //show all authors
     public function index()
@@ -17,11 +17,11 @@ class AuthorsController extends Controller
     }
 
     //show create author page
-    public function create() {
-        return view('authors.create', [
-            'pageTitle' => 'Add Author'
-        ]);
-    }
+    // public function create() {
+    //     return view('authors.create', [
+    //         'pageTitle' => 'Add Author'
+    //     ]);
+    // }
 
     //strore new author
     public function store(Request $request) {

@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\AuthorsController;
+use App\Http\Controllers\AuthorController;
 
 
 Route::get('/', function () {
@@ -9,8 +9,6 @@ Route::get('/', function () {
 });
 
 //show all authors
-Route::get('/authors', [AuthorsController::class, 'index'])->name('authors.index');
-//show add author view
-Route::get('admin/authors/create', [AuthorsController::class, 'create'])->name('manage.authors.create');
+Route::get('/authors', [AuthorController::class, 'index'])->name('authors.index');
 //store new author
-Route::post('/authors', [AuthorsController::class, 'store'])->name('manage.authors.store');
+Route::post('/authors', [AuthorController::class, 'store'])->name('manage.authors.store');

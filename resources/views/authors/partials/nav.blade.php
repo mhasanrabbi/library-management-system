@@ -17,9 +17,6 @@
                     <a class="nav-link" href="{{ route('authors.index') }}">Authors</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ route('manage.authors.create') }}">Add Author</a>
-                </li>
-                <li class="nav-item">
                     <a class="nav-link" href="#">Manage Authors</a>
                 </li>
             </ul>
