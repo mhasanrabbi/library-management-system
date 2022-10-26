@@ -26,10 +26,10 @@ class AuthorController extends Controller
     //strore new author
     public function store(Request $request) {
         $formRequest = $request->validate([
-            'author_name' => 'required|min:5|max:100'
+            'author_name' => 'required|min:4|max:30|unique:authors|regex:/^[a-zA-Z- ]*$/'
         ]);
 
         Author::create($formRequest);
-        return redirect()->route('authors.index');
+        return redirect()->route('authors.index')->with('message', 'Author created successfully!');
     }
 }

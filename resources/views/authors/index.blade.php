@@ -1,13 +1,12 @@
 @extends('layouts.layout')
-
 @section('content')
-    <div id="content">
-
+<div id="content">
+        @include('authors.partials.message')
         @include('authors.partials.nav')
 
         <div class="container">
             <div class="row">
-                <div class="col mb-3">
+                <div class="col mb-2">
                     <h4 style="background-color: #f5f6fa" class="text-right p-2">
                         <button type="button" class="btn btn-outline-primary" data-toggle="modal" data-target="#authorModal">
                             <i class="fas fa-plus-square"></i> New Author
@@ -39,8 +38,6 @@
 
             @include('authors.partials.pagination')
         </div>
-
-
     </div>
 @endsection
 
@@ -64,6 +61,9 @@
                         <label for="name">Author Name</label>
                         <input type="text" name="author_name" class="form-control" id="name"
                             placeholder="Enter author name">
+                        @error('author_name')
+                            <p class="text-danger mt-2">{{ $message }}</p>
+                        @enderror
                     </div>
                 </div>
                 <div class="modal-footer">

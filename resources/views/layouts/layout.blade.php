@@ -24,16 +24,21 @@
 
 <body>
     <div class="wrapper">
-
         @include('partials.sidebar')
-
-
 
         @yield('content')
 
     </div>
 
     @include('partials.scripts')
+
+    <script type="text/javascript">
+        $("document").ready(function() {
+            setTimeout(() => {
+                $("#flash").remove();
+            }, 3000);
+        });
+    </script>
 
 </body>
 
