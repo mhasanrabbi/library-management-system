@@ -24,11 +24,12 @@ class AuthController extends Controller
             'email' => 'required',
             'password' => 'required',
         ]);
-
         $credentials = $request->only('email', 'password');
         if (Auth::attempt($credentials)) {
             return redirect()->intended('dashboard')
                 ->withSuccess('Signed in');
+            
+        
         }
 
 
@@ -75,7 +76,7 @@ class AuthController extends Controller
 
         // dd("suer :", $id, $role);
 
-        return view('index');
+        return view('index',['role' => $role]);
     }
     public function dashboard() // after logged in redirect admin to dashboard page.
     {
