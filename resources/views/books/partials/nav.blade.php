@@ -25,10 +25,19 @@
                             class="fas fa-trash"></i></a>
                 </li>
             </ul>
-            <form class="form-inline ml-5">
-                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+            @if(request()->routeIs('books*'))
+            <form class="form-inline ml-5" action="{{ route('books.index') }}" method="GET">
+                @csrf
+                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" name="search">
                 <button class="btn btn-outline-primary my-2 my-sm-0" type="submit">Search</button>
             </form>
+            @else
+            <form class="form-inline ml-5" action="{{ route('manage.books.index') }}" method="GET">
+                @csrf
+                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" name="search">
+                <button class="btn btn-outline-primary my-2 my-sm-0" type="submit">Search</button>
+            </form>
+            @endif
         </div>
     </div>
 </nav>

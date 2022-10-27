@@ -11,7 +11,7 @@ class BooksController extends Controller
     {
         $data = [
             'pageTitle' => 'এসো বই পড়ি | Book List',
-            'books' => Book::latest()->paginate(10)
+            'books' => Book::latest()->filter(request(['search']))->paginate(10)
         ];
 
         return view('books.index', $data);
@@ -20,18 +20,16 @@ class BooksController extends Controller
 
     public function show($id)
     {
-
         $data = [
             'book' => Book::findOrFail($id)
         ];
-
         return view('books.single', $data);
     }
 
     public function manage()
     {
         $data = [
-            'books' => Book::orderBy('id', 'desc')->paginate(10),
+            'books' => Book::latest()->filter(request(['search']))->paginate(10)
         ];
         return view('books.manage', $data);
     }
@@ -117,4 +115,11 @@ class BooksController extends Controller
         $book->forceDelete();
         return redirect()->route('books.trashed')->with(['message' => 'Book deleted successfully!']);
     }
+
+    // public function search(Request $request)
+    // {
+    //     // $bookName = $request->search;
+    //     return $book = Book::where('title', 'LIKE', '%' . $request->search . '%')->get();
+    //     return view('books.index', compact('book'));
+    // }
 }

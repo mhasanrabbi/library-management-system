@@ -25,3 +25,4 @@ Route::post('/books/trashed/{id}/delete', [BooksController::class, 'trashedDestr
 # Books Panel Frontend (Rabbi)
 Route::get('/books', [BooksController::class, 'index'])->name('books.index');
 Route::get('/books/{id}', [BooksController::class, 'show'])->name('books.show');
+// Route::get('/books', [BooksController::class, 'search'])->name('books.search');

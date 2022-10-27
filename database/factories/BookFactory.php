@@ -19,7 +19,7 @@ class BookFactory extends Factory
         return [
             'title' => $this->faker->name(),
             'description' => $this->faker->text(),
-            'isbn' => $this->faker->numberBetween(0, 9999),
+            'isbn' => $this->faker->numberBetween(1000, 9999),
             'category' => $this->faker->name(),
             'author' => $this->faker->name(),
             'total_books' => $this->faker->numberBetween(0, 99),
