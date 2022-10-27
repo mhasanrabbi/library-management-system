@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 
 class BooksController extends Controller
 {
-    public function index(Request $request)
+    public function index()
     {
         $data = [
             'pageTitle' => 'এসো বই পড়ি | Book List',
@@ -15,6 +15,17 @@ class BooksController extends Controller
         ];
 
         return view('books.index', $data);
+    }
+
+
+    public function show($id)
+    {
+
+        $data = [
+            'book' => Book::findOrFail($id)
+        ];
+
+        return view('books.single', $data);
     }
 
     public function manage()
@@ -50,9 +61,6 @@ class BooksController extends Controller
         return redirect('/books');
     }
 
-    public function show($id)
-    {
-    }
 
     public function edit($id)
     {
