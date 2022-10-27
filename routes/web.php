@@ -5,9 +5,10 @@ use App\Http\Controllers\AuthController;
 
 
 
-// Route::get('/', function () {
-//     return view('index');
-// });
+Route::get('/', function () {
+
+    return view('index');
+});
 
 
 

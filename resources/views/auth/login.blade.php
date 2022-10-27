@@ -1,6 +1,6 @@
 
 @extends('layouts.app')
-{{-- {{ dd("dsasdaf") }} --}}
+
 @section('content')
 <main class="login-form">
     <div class="cotainer">
