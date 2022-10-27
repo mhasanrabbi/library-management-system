@@ -32,13 +32,13 @@
 
     @include('partials.scripts')
 
-    {{-- <script type="text/javascript">
+    <script type="text/javascript">
         $("document").ready(function() {
             setTimeout(() => {
                 $("#flash").remove();
             }, 2000);
         });
-    </script> --}}
+    </script>
 
 </body>
 
