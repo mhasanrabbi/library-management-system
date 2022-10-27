@@ -7,14 +7,19 @@
         <div class="container">
             <div class="row">
                 <div class="col mb-2">
-                    <h4 style="background-color: #f5f6fa" class="text-right p-2">
-                        <a href="{{ route('manage.authors.index') }}" type="button" class="btn btn-outline-primary"><i class="fas fa-cog"></i>
+                    <div class="text-right p-2" style="background-color: #f5f6fa">
+                        <a href="{{ route('manage.authors.index') }}" type="button" class="btn btn-outline-primary"><i
+                                class="fas fa-cog"></i>
                             Authors Manage</a>
                         <button type="button" class="btn btn-outline-primary" data-toggle="modal"
                             data-target="#authorModal">
                             <i class="fas fa-plus-square"></i> New Author
                         </button>
-                    </h4>
+                        <form action="" class="">
+                            <input type="text" placeholder="Search author by name">
+                            <button class="btn btn-outline-primary inline" type="submit">Search</button>
+                        </form>
+                    </div>
                 </div>
             </div>
             <div class="row">

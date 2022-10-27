@@ -18,4 +18,6 @@ Route::get('/manage/authors', [AuthorController::class, 'manage'])->name('manage
 Route::put('/manage/authors/{id}', [AuthorController::class, 'update'])->name('manage.authors.update');
 //delete author
 Route::delete('/manage/authors/{id}', [AuthorController::class, 'destroy'])->name('manage.authors.destroy');
+//author search
+Route::get('/authors/search')->name('authors.search');
 
