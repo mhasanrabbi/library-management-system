@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->string('title', 255);
             $table->longtext('description');
-            $table->string('image', 255)->nullable();
+            $table->string('image')->nullable();
             $table->string('isbn', 255);
             $table->string('category', 255);
             $table->string('author', 255);

@@ -23,7 +23,7 @@
                             </p>
                         </div>
                         <div class="col-6">
-                            <img src="..." class="rounded mx-auto d-block" alt="...">
+                            <img src="{{ $book->image ? asset('storage/' . $book->image ) : asset('/images/no-image.png')}}" class="img-thumbnail rounded mx-auto d-block" alt="...">
                         </div>
                     </div>
                     <hr class="my-4">

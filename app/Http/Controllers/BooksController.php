@@ -41,7 +41,7 @@ class BooksController extends Controller
 
     public function store(Request $request)
     {
-        // dd($request->all());
+        // dd($request->file('logo'));
 
         $formRequest = $request->validate([
             'title' => 'required',
@@ -51,8 +51,12 @@ class BooksController extends Controller
             'author' => 'required',
             'total_books' => 'required|numeric',
             'book_source' => 'required',
-            'rack_no' => 'required'
+            'rack_no' => 'required',
         ]);
+
+        if ($request->hasFile('image')) {
+            $formRequest['image'] = $request->file('image')->store('images', 'public');
+        }
 
         Book::create($formRequest);
 
@@ -75,6 +79,7 @@ class BooksController extends Controller
         $formRequest = $request->only([
             'title',
             'description',
+            'image',
             'isbn',
             'category',
             'author',
