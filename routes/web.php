@@ -34,13 +34,11 @@ Route::middleware(['auth', 'isadmin'])->group(function () {
 
 
     //show all authors
-    Route::get( '/authors', [AuthorController::class, 'index'] )->name( 'authors.index' );
+    Route::get('/authors', [AuthorController::class, 'index'])->name('authors.index');
     //show add author view
-    Route::get( '/authors/create', [AuthorController::class, 'create'] )->name( 'authors.create' );
+    Route::get('/authors/create', [AuthorController::class, 'create'])->name('authors.create');
     //store new author
-    Route::post( '/authors', [AuthorController::class, 'store'] )->name( 'authors.store' );
-
-
+    Route::post('/authors', [AuthorController::class, 'store'])->name('authors.store');
 });
 
 
