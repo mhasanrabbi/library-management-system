@@ -42,7 +42,9 @@ Route::middleware(['auth', 'isadmin'])->group(function () {
 });
 
 
-Auth::routes();
+// Auth::routes();
+Auth::routes( ['verify' => true] );
 
-Route::get('/home', [HomeController::class, 'index'])->name('home');
+
+Route::middleware(['auth', 'verified'])->get('/home', [HomeController::class, 'index'])->name('home');
 // Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('dashboard');

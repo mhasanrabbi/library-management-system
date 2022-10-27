@@ -33,7 +33,7 @@
                         
                         @else
                         <li class="nav-item">
-                            <a class="nav-link" href="#">{{ Auth::user()->name }}'s Profile</a>
+                            <a class="nav-link" href="#">{{ Auth::user()->first_name }} {{ Auth::user()->last_name }}'s Profile</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('signout') }}">Logout</a>
