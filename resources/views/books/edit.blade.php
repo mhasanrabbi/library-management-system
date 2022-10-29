@@ -33,13 +33,12 @@
                     <div class="mb-3">
                         <div class="row">
                             <div class="col-4">
-                                <img src="{{ $book->image ? asset('storage/' . $book->image ) : asset('/images/no-image.png')}}"
-                                    class="img-thumbnail rounded mx-auto d-block" alt="...">
+                                <img src="{{ $book->image ? asset('storage/' . $book->image ) : asset('/images/no-image.png')}}" class="img-thumbnail rounded mx-auto d-block" alt="...">
+
                             </div>
                             <div class="col-6">
                                 <label for="image" class="form-label">Image</label>
-                                <input type="file" class="form-control" id="image" placeholder="Add Image" name="image">
-                                {{-- {{dd($book->image)}} --}}
+                                <input type="file" class="form-control" id="image" placeholder="Add Image">
                             </div>
                         </div>
                     </div>

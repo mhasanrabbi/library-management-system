@@ -88,6 +88,10 @@ class BooksController extends Controller
             'rack_no'
         ]);
 
+        if ($request->hasFile('image')) {
+            $formRequest['image'] = $request->file('image')->store('images', 'public');
+        }
+
         Book::where('id', $id)->update($formRequest);
 
         return redirect()->route('manage.books.index')->with(['message' => 'Book updated successfully!']);
