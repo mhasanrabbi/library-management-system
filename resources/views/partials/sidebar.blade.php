@@ -4,15 +4,15 @@
     </div>
 
     <ul class="list-unstyled components">
-        <p>Dashboard</p>
+        <p><a href="/">Dashboard</a></p>
         <li class="active">
             <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Home</a>
             <ul class="collapse list-unstyled" id="homeSubmenu">
                 <li>
-                    <a href="#">Books</a>
+                    <a href="/books">Books</a>
                 </li>
                 <li>
-                    <a href="#">Authors</a>
+                    <a href="{{ route('authors.index') }}">Authors</a>
                 </li>
                 <li>
                     <a href="#">Categories</a>
