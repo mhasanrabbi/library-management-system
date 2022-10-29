@@ -24,7 +24,7 @@ class BookFactory extends Factory
             'author' => $this->faker->name(),
             'total_books' => $this->faker->numberBetween(0, 99),
             'book_source' => $this->faker->name(),
-            'rack_no' => $this->faker->numberBetween(0, 50),
+            'racks' => $this->faker->numberBetween(0, 50),
         ];
     }
 }

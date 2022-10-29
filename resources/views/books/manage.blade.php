@@ -50,7 +50,7 @@
                             <td>{{ $book->author }}</td>
                             <td>{{ $book->total_books }}</td>
                             <td>{{ $book->book_source }}</td>
-                            <td>{{ $book->rack_no }}</td>
+                            <td>{{ $book->racks }}</td>
                             <td>{{ $book->created_at }}</td>
                             <td class="text-center text-success">
                                 <a href="{{ route('manage.books.edit', $book->id) }}" class="btn btn-success"><i

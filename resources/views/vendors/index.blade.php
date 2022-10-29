@@ -39,7 +39,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                   
+
                         @unless(empty($vendors))
                        @foreach( $vendors as $vendor)
                         <tr>
@@ -59,10 +59,10 @@
                                 </button>
                             </td>
                         </tr>
-                       
-                        @endforeach
-                        
-                      
+
+
+
+
                         <!-- Modal -->
                         <form action="{{ route('vendors.destroy', $vendor->id) }}" method="POST">
                             @csrf
@@ -88,7 +88,7 @@
                                 </div>
                             </div>
                         </form>
-                       
+                        @endforeach
                         @else
                         <tr>
                             <td colspan="6">No data found</td>

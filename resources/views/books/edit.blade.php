@@ -59,16 +59,23 @@
                         </div>
                         <div class="col-6">
                             <div class="mb-3">
-                                <label for="isbn" class="form-label">Author</label>
-                                <input type="text" class="form-control" id="author" placeholder="Author" name="author"
-                                    value="{{ $book->author}}">
+                                <select name="author" class="form-select" aria-label="Default select example">
+                                    <option selected>--- Select author ---</option>
+                                    @foreach($authors as $key => $author)
+                                    <option value="{{ $author->author_name }}">{{ $author->author_name }}</option>
+                                    @endforeach
+                                </select>
                             </div>
                         </div>
                         <div class="col-6">
                             <div class="mb-3">
-                                <label for="total_books" class="form-label">Total Books</label>
-                                <input type="text" class="form-control" id="total_books" placeholder="Total Books"
-                                    name="total_books" value="{{ $book->total_books}}">
+
+                        <select name="vendor" class="form-select" aria-label="Default select example">
+                            <option selected>--- Select vendor ---</option>
+                            @foreach($vendors as $key => $vendor)
+                            <option value="{{ $vendor->name }}">{{ $vendor->name }}</option>
+                            @endforeach
+                        </select>
                             </div>
                         </div>
                         <div class="col-6">
@@ -79,10 +86,12 @@
                             </div>
                         </div>
                         <div class="col-6">
-                            <div class="mb-3">
-                                <label for="rack" class="form-label">Rack Number</label>
-                                <input type="text" class="form-control" id="rack" placeholder="Rack Number" name="rack"
-                                    value="{{ $book->rack_no}}">
+                            <div class="mb-3"><select name="racks" class="form-select" aria-label="Default select example">
+                                <option selected>--- Select Rack ---</option>
+                                @foreach($racks as $key => $rack)
+                                <option value="{{ $rack->rack_name }}">{{ $rack->rack_name }}</option>
+                                @endforeach
+                            </select>
                             </div>
                         </div>
                         {{-- <div class="col-6 mb-3">

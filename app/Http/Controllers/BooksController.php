@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Author;
 use App\Models\Book;
+use App\Models\BookRack;
+use App\Models\Vendor;
 use Illuminate\Http\Request;
 
 class BooksController extends Controller
@@ -36,7 +39,10 @@ class BooksController extends Controller
 
     public function create()
     {
-        return view('books.create');
+        $data['authors'] = Author::get(['id', 'author_name']);
+        $data['racks'] = BookRack::get(['id', 'rack_name']);
+        $data['vendors'] = Vendor::get(['id', 'name']);
+        return view('books.create', $data);
     }
 
     public function store(Request $request)
@@ -49,9 +55,9 @@ class BooksController extends Controller
             'isbn' => 'required|numeric',
             'category' => 'required',
             'author' => 'required',
-            'total_books' => 'required|numeric',
+            'total_books' => 'nullable',
             'book_source' => 'required',
-            'rack_no' => 'required',
+            'racks' => 'required',
         ]);
 
         if ($request->hasFile('image')) {
@@ -68,6 +74,9 @@ class BooksController extends Controller
     {
         $data = [
             'pageTitle' => 'Edit Book',
+            'authors' => Author::get(['id', 'author_name']),
+            'racks' => BookRack::get(['id', 'rack_name']),
+            'vendors' => Vendor::get(['id', 'name']),
             'book' => Book::findOrFail($id)
         ];
 
@@ -85,7 +94,7 @@ class BooksController extends Controller
             'author',
             'total_books',
             'book_source',
-            'rack_no'
+            'racks'
         ]);
 
         if ($request->hasFile('image')) {

@@ -21,9 +21,9 @@ return new class extends Migration
             $table->string('isbn', 255);
             $table->string('category', 255);
             $table->string('author', 255);
-            $table->string('total_books', 255);
+            $table->string('total_books', 255)->nullable();
             $table->string('book_source', 255);
-            $table->string('rack_no', 255);
+            $table->string('racks', 255);
             $table->dateTime('published_at')->nullable();
             $table->softDeletes();
             $table->timestamps();
