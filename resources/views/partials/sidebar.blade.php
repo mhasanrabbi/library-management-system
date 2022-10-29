@@ -30,7 +30,7 @@
                     <a href="#">Assets</a>
                 </li>
                 <li>
-                    <a href="#">Vendor</a>
+                    <a href="{{route('vendors.index')}}">Vendor</a>
                 </li>
                 <li>
                     <a href="#">Staff Members</a>

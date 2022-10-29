@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\VendorsController;
 use App\Http\Controllers\BooksController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthorController;
@@ -8,6 +9,14 @@ use App\Http\Controllers\AuthorController;
 Route::get('/', function () {
     return view('index');
 });
+
+# Vendors (Azhar)
+Route::get('vendors', [VendorsController::class, 'index'])->name('vendors.index');
+Route::get('vendors/create', [VendorsController::class, 'create'])->name('vendors.create');
+Route::post('/vendors', [VendorsController::class, 'store'])->name('vendors.store');
+Route::get('vendors/{id}/edit', [VendorsController::class, 'edit'])->name('vendors.edit');
+Route::put('/vendors/{id}', [VendorsController::class, 'update'])->name('vendors.update');
+Route::delete('/vendors/{id}', [VendorsController::class, 'destroy'])->name('vendors.destroy');
 
 # Authors (Kamrul)
 //show all authors
@@ -23,7 +32,6 @@ Route::delete('/manage/authors/{id}', [AuthorController::class, 'destroy'])->nam
 //author search
 Route::get('/authors/search')->name('authors.search');
 
-=======
 # Books Panel (Rabbi)
 Route::get('/manage/books', [BooksController::class, 'manage'])->name('manage.books.index');
 Route::get('/books/create', [BooksController::class, 'create'])->name('manage.books.create');
@@ -41,4 +49,3 @@ Route::post('/books/trashed/{id}/delete', [BooksController::class, 'trashedDestr
 # Books Panel Frontend (Rabbi)
 Route::get('/books', [BooksController::class, 'index'])->name('books.index');
 Route::get('/books/{id}', [BooksController::class, 'show'])->name('books.show');
-// Route::get('/books', [BooksController::class, 'search'])->name('books.search');
