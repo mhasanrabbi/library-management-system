@@ -1,21 +1,25 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AuthorController;
+use App\Http\Controllers\BooksController;
 use App\Http\Controllers\RackController;
 use App\Http\Controllers\UserController;
-use App\Http\Controllers\BooksController;
-use App\Http\Controllers\EventController;
-use App\Http\Controllers\AuthorController;
 use App\Http\Controllers\VendorsController;
+use App\Http\Controllers\CartController;
+
+use Illuminate\Support\Facades\Route;
+
+// Route::get( '/', [ProductController::class, 'productList'] )->name( 'products.list' );
+// Route::get( 'cart', [CartController::class, 'cartList'] )->name( 'cart.list' );
+// Route::post( 'cart', [CartController::class, 'addToCart'] )->name( 'cart.store' );
+// Route::post( 'update-cart', [CartController::class, 'updateCart'] )->name( 'cart.update' );
+// Route::post( 'remove', [CartController::class, 'removeCart'] )->name( 'cart.remove' );
+// Route::post( 'clear', [CartController::class, 'clearAllCart'] )->name( 'cart.clear' );
 
 Route::get( '/logout', [UserController::class, 'logout'] )->name( 'logout' );
 
-Route::get( '/event', [EventController::class, 'index'] )->name( 'event.index' );
-
-
-
 Route::middleware( ['guest'] )->group( function () {
-    Route::get( '/', [UserController::class, 'index']);
+    Route::get( '/', [UserController::class, 'index'] );
     Route::post( '/register', [UserController::class, 'validate_registration'] )->name( 'register' );
     Route::post( '/login', [UserController::class, 'validate_login'] )->name( 'login' );
 } );
@@ -76,8 +80,13 @@ Route::middleware( ['auth', 'isadmin'] )->group( function () {
 
 # Books Panel Frontend (Rabbi)
     Route::get( '/books', [BooksController::class, 'index'] )->name( 'books.index' );
+
+    Route::get( 'cart', [CartController::class, 'cartList'] )->name( 'cart.list' );
+    Route::post( 'cart', [CartController::class, 'addToCart'] )->name( 'cart.store' );
+    Route::post( 'update-cart', [CartController::class, 'updateCart'] )->name( 'cart.update' );
+    Route::post( 'remove', [CartController::class, 'removeCart'] )->name( 'cart.remove' );
+    Route::post( 'clear', [CartController::class, 'clearAllCart'] )->name( 'cart.clear' );
+
     Route::get( '/books/{id}', [BooksController::class, 'show'] )->name( 'books.show' );
 
 } );
-
-

@@ -160,6 +160,7 @@ return [
          * Laravel Framework Service Providers...
          */
         Barryvdh\Debugbar\ServiceProvider::class,
+        Darryldecode\Cart\CartServiceProvider::class,
         Illuminate\Auth\AuthServiceProvider::class,
         Illuminate\Broadcasting\BroadcastServiceProvider::class,
         Illuminate\Bus\BusServiceProvider::class,
@@ -211,6 +212,8 @@ return [
 
     'aliases' => Facade::defaultAliases()->merge([
         // 'ExampleClass' => App\Example\ExampleClass::class,
+        'Cart' =>  Darryldecode\Cart\CartServiceProvider::class,
+        
     ])->toArray(),
 
 ];

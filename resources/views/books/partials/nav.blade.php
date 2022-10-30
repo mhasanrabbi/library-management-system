@@ -11,6 +11,12 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="nav navbar-nav mr-auto">
+                <li class="nav-item">
+                   {{ Cart::getTotalQuantity()}}
+                </li>
+                <li class="nav-item {{ request()->routeIs('cart.list') ? 'active' : ''}}">
+                    <a class="nav-link" href="{{route('cart.list')}}">Cart</a>
+                </li>
                 <li class="nav-item {{ request()->routeIs('books.index') ? 'active' : ''}}">
                     <a class="nav-link" href="{{route('books.index')}}">Books</a>
                 </li>
