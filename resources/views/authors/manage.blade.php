@@ -5,7 +5,7 @@
         @include('authors.partials.nav')
 
         <div class="container">
-            <div class="row mb-1">
+            <div class="row mb-2">
                 <div class="col">
                     <h4 class="d-inline" style="color: #34495e">Authors List For Manage</h4>
                     <a href="{{ route('authors.index') }}" type="button" class="btn btn-outline-primary text-right"><i
@@ -13,7 +13,7 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-10">
+                <div class="col-11">
                     <table class="table table-striped">
                         <thead>
                             <tr style="background-color: #ff6b6b">

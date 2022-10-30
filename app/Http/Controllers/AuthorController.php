@@ -16,13 +16,6 @@ class AuthorController extends Controller
         ]);
     }
 
-    //show create author page
-    // public function create() {
-    //     return view('authors.create', [
-    //         'pageTitle' => 'Add Author'
-    //     ]);
-    // }
-
     //strore new author
     public function store(Request $request)
     {
@@ -60,5 +53,16 @@ class AuthorController extends Controller
         Author::where('id', $id)->delete();
 
         return redirect()->back()->with('message', 'Author deleted successfully!');
+    }
+
+    //search author
+    public function search(Request $request) {
+        // dd($request->all());
+        $authors = Author::where('author_name', 'LIKE', '%'. $request['search_author'] . '%')->get();
+
+        dd($authors);
+
+        return view('authors.index'[
+        ]);
     }
 }

@@ -15,8 +15,9 @@
                             data-target="#authorModal">
                             <i class="fas fa-plus-square"></i> New Author
                         </button>
-                        <form action="" class="">
-                            <input type="text" placeholder="Search author by name">
+                        <form action="{{ route('authors.search') }}" method="POST">
+                            @csrf
+                            <input type="text" name="search_author" placeholder="Search author by name">
                             <button class="btn btn-outline-primary inline" type="submit">Search</button>
                         </form>
                     </div>
