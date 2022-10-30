@@ -54,11 +54,8 @@ class UserController extends Controller
             'password'   => Hash::make( $data['password'] ),
         ] );
 
-            $userId = $createData->id;
+         //$userId = $createData->id;
 
-            // dd($userId);
-            Event::dispatch( new SendMail( $userId ) );
-           
 
         return redirect( '/' )->with( 'success', 'Registration Completed, now you can login' );
     }
