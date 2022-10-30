@@ -131,7 +131,7 @@
             <div class="relative flex items-top justify-center min-h-screen bg-gray-100 dark:bg-gray-900 sm:items-center py-4 sm:pt-0">
                 @if (Route::has('login'))
                     <div class="hidden fixed top-0 right-0 px-6 py-4 sm:block">
-                        @auth
+                      @auth
                         @if (Auth::user()->role == 1)
                         <a href="{{ route('dashboard') }}" class="btn btn-secondary">Dashboard</a>
                         <a href="{{ route('home') }}" class="btn btn-primary">Home</a>
@@ -151,7 +151,7 @@
                     </div>
                 @endif
             </div>
-        </div>
+       
 
 
         <div class="modal fade" id="loginmodal" tabindex="-1" aria-labelledby="ModalFormLabel" data-bs-backdrop="static"
@@ -341,7 +341,7 @@
         </div>
 
 
-
+</div>
 
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.0.1/js/bootstrap.min.js"></script>
