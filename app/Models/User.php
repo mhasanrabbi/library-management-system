@@ -47,8 +47,8 @@ class User extends Authenticatable implements MustVerifyEmail
     ];
 
 
-    public function isAdminOrSupervisor()
-    {
-        return auth()->user()->hasRole('admin') || auth()->user()->hasRole('supervisor');
-    }
+    // public function isAdminOrSupervisor()
+    // {
+    //     return auth()->user()->hasRole('admin') || auth()->user()->hasRole('supervisor');
+    // }
 }
