@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Redirect;
 
 class UserController extends Controller
 {
@@ -33,8 +34,8 @@ class UserController extends Controller
     {
         $request->validate( [
 
-            'first_name' => ['required', 'string', 'max:255'],
-            'last_name'  => ['required', 'string', 'max:255'],
+            'first_name' => ['required','regex:/^[\pL\s\-]+$/u', 'string', 'max:255'],
+            'last_name'  => ['required', 'regex:/^[\pL\s\-]+$/u','string', 'max:255'],
             'email'      => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'phone'      => ['required', 'string', 'max:20', 'unique:users'],
             'password'   => ['required', 'string', 'min:8', 'confirmed'],
@@ -66,7 +67,8 @@ class UserController extends Controller
             return redirect( 'dashboard' );
         }
 
-        return redirect( '/' )->with( 'success', 'Login details are not valid' );
+        return Redirect::back()->withErrors( ['msg' => 'Login details are not valid'] );
+
     }
 
     public function dashboard()

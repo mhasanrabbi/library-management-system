@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Route;
 Route::get( '/logout', [UserController::class, 'logout'] )->name( 'logout' );
 
 Route::middleware( ['guest'] )->group( function () {
-    Route::get( '/', [UserController::class, 'index'] );
+    Route::get( '/', [UserController::class, 'index']);
     Route::post( '/register', [UserController::class, 'validate_registration'] )->name( 'register' );
     Route::post( '/login', [UserController::class, 'validate_login'] )->name( 'login' );
 } );

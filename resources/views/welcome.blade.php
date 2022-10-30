@@ -107,19 +107,26 @@
     </head>
     <body class="antialiased">
         <div class="container">
+            
+           
             @if(count($errors) > 0 )
             <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                {{-- <button type="button" class="close" data-dismiss="alert" aria-label="Close"></button> --}}
-                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+               <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                 <ul class="p-0 m-0" style="list-style: none;">
                     @foreach($errors->all() as $error)
                     <li>{{$error}}</li>
                     @endforeach
                 </ul>
             </div>
-
             @endif
-               {{ session('success') }}
+
+            @if ($message = Session::get('success'))
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                <strong>{{ $message }}</strong>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+            @endif
+            
 
             <div class="relative flex items-top justify-center min-h-screen bg-gray-100 dark:bg-gray-900 sm:items-center py-4 sm:pt-0">
                 @if (Route::has('login'))
@@ -158,30 +165,24 @@
                             <h1 class="text-center">Login Form</h1>
                             <form method="POST" action="{{ route('login') }}">
                                 @csrf
-                              
-
-
                             <div class="mb-3 mt-4">
                                 <label for="email" class="form-label">{{ __('Email Address') }}</label>
-                                <div class="mb-3 mt-1">
                                     <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email"
-                                        value="{{ old('email') }}" required autocomplete="email" aria-describedby="emailHelp" autofocus>
+                                        value="{{ old('email') }}" 
+                                        placeholder="example@email.com"
+                                        required 
+                                        autocomplete="email" aria-describedby="emailHelp" autofocus>
                                     @error('email')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
                                     @enderror
-                                </div>
+                                
                             </div>
-
-
-                              
-
 
                              <div class="mb-3">
                                     <label for="password" class="form-label">{{ __('Password') }}</label>
-                                
-                                    <div class="mb-3 mt-1">
+                                   
                                         <input id="password" type="password" class="form-control @error('password') is-invalid @enderror"
                                             name="password" required autocomplete="current-password">
                             
@@ -190,7 +191,7 @@
                                             <strong>{{ $message }}</strong>
                                         </span>
                                         @enderror
-                                    </div>
+                                 
                             </div>
 
                             <div class="row mb-3">
