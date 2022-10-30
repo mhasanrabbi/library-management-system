@@ -25,19 +25,12 @@ class AdminMiddleware
                 // dd($request, Auth::user()->role);
                 return $next($request);
             } else {
-                // return redirect('/home')->with('message', 'You are not allowed to access this page.');
                 return redirect('/home');
             }
         } else {
-            return redirect('/login')->with('message', 'You are not allowed please login first.');
+            return redirect('/');
         }
         return $next($request);
     }
 }
 
-// if ( Auth()->check() and Auth()->user()->role == 0 ) { // user is logged in but it is blocked
-//     auth()->logout();
-//     return redirect( '/' );
-// }
-
-// return $next( $request );
