@@ -1,8 +1,10 @@
 @extends('layouts.layout')
 @section('content')
     <div id="content">
+
+        @include('partials.nav')
         @include('authors.partials.message')
-        @include('authors.partials.nav')
+        {{-- @include('authors.partials.nav') --}}
 
         <div class="container">
             <div class="row">
@@ -15,11 +17,6 @@
                             data-target="#authorModal">
                             <i class="fas fa-plus-square"></i> New Author
                         </button>
-                        <form action="{{ route('authors.search') }}" method="POST">
-                            @csrf
-                            <input type="text" name="search_author" placeholder="Search author by name">
-                            <button class="btn btn-outline-primary inline" type="submit">Search</button>
-                        </form>
                     </div>
                 </div>
             </div>

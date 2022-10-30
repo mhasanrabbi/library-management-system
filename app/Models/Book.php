@@ -19,7 +19,7 @@ class Book extends Model
         'author',
         'total_books',
         'book_source',
-        'rack_no',
+        'racks',
     ];
 
     public function scopeFilter($query, array $filters)

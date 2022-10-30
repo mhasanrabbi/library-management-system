@@ -1,8 +1,8 @@
 @extends('layouts.layout')
 @section('content')
     <div id="content">
+        @include('partials.nav')
         @include('authors.partials.message')
-        @include('authors.partials.nav')
 
         <div class="container">
             <div class="row mb-2">
