@@ -1,13 +1,18 @@
 <?php
 
-use App\Http\Controllers\AuthorController;
-use App\Http\Controllers\BooksController;
+use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\RackController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\BooksController;
+use App\Http\Controllers\EventController;
+use App\Http\Controllers\AuthorController;
 use App\Http\Controllers\VendorsController;
-use Illuminate\Support\Facades\Route;
 
 Route::get( '/logout', [UserController::class, 'logout'] )->name( 'logout' );
+
+Route::get( '/event', [EventController::class, 'index'] )->name( 'event.index' );
+
+
 
 Route::middleware( ['guest'] )->group( function () {
     Route::get( '/', [UserController::class, 'index']);
@@ -74,3 +79,5 @@ Route::middleware( ['auth', 'isadmin'] )->group( function () {
     Route::get( '/books/{id}', [BooksController::class, 'show'] )->name( 'books.show' );
 
 } );
+
+

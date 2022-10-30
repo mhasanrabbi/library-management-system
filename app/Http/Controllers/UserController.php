@@ -3,9 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Events\SendMail;
 use Illuminate\Http\Request;
+use App\Events\UserloginHistory;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Event;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Redirect;
 
@@ -43,13 +46,19 @@ class UserController extends Controller
 
         $data = $request->all();
 
-        User::create( [
+        $createData = User::create( [
             'first_name' => $data['first_name'],
             'last_name'  => $data['last_name'],
             'email'      => $data['email'],
             'phone'      => $data['phone'],
             'password'   => Hash::make( $data['password'] ),
         ] );
+
+            $userId = $createData->id;
+
+            // dd($userId);
+            Event::dispatch( new SendMail( $userId ) );
+           
 
         return redirect( '/' )->with( 'success', 'Registration Completed, now you can login' );
     }
@@ -64,6 +73,11 @@ class UserController extends Controller
         $credentials = $request->only( 'email', 'password' );
 
         if ( Auth::attempt( $credentials ) ) {
+
+            $credentials['first_name'] = Auth::user()->first_name;
+
+            Event::dispatch( new UserloginHistory((object) $credentials ) );
+
             return redirect( 'dashboard' );
         }
 
