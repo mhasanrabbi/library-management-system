@@ -43,7 +43,6 @@ Route::middleware( ['auth', 'isadmin'] )->group( function () {
 //delete author
     Route::delete( '/manage/authors/{id}', [AuthorController::class, 'destroy'] )->name( 'manage.authors.destroy' );
 //author search
-<<<<<<< HEAD
     Route::get( '/authors/search' )->name( 'authors.search' );
 
 // Book Rack
@@ -61,9 +60,6 @@ Route::middleware( ['auth', 'isadmin'] )->group( function () {
     Route::get( 'vendors/{id}/edit', [VendorsController::class, 'edit'] )->name( 'vendors.edit' );
     Route::put( '/vendors/{id}', [VendorsController::class, 'update'] )->name( 'vendors.update' );
     Route::delete( '/vendors/{id}', [VendorsController::class, 'destroy'] )->name( 'vendors.destroy' );
-=======
-Route::post('/authors/search', [AuthorController::class, 'search'])->name('authors.search');
->>>>>>> feature/authors
 
 # Books Panel (Rabbi)
     Route::get( '/manage/books', [BooksController::class, 'manage'] )->name( 'manage.books.index' );
