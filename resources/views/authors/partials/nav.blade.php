@@ -17,10 +17,14 @@
                     <a class="nav-link" href="{{ route('authors.index') }}">Authors</a>
                 </li>
                 <li class="nav-item">
+<<<<<<< HEAD
                     <a class="nav-link" href="{{ route('authors.create') }}">Add Author</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#">Manage Authors</a>
+=======
+                    <a class="nav-link" href="{{ route('manage.authors.index') }}">Manage Authors</a>
+>>>>>>> develop
                 </li>
             </ul>
         </div>

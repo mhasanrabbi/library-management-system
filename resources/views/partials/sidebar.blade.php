@@ -1,18 +1,19 @@
 <nav id="sidebar">
-    <div class="sidebar-header">
-        <h3>এসো বই পড়ি</h3>
+    <div class="sidebar-header text-center">
+        <a href="{{'/'}}"><img style="height: 50px; width: 180px;" src="{{asset('assets/img/lms.png')}}" alt=""></a>
     </div>
 
     <ul class="list-unstyled components">
-        <p>Dashboard</p>
+        <p><a href="/">Dashboard</a></p>
         <li class="active">
             <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Home</a>
             <ul class="collapse list-unstyled" id="homeSubmenu">
                 <li>
-                    <a href="#">Books</a>
+                
                     {{-- <a  class="nav-link {{ request()->is('contract/generate1') ? 'active' : '' }}"
                         href="{{ route('generatepdf_ALL') }}" target="_blank"><i class="fa-regular fa-file-pdf"></i>&nbsp;Alle
                         Download</a> --}}
+                    <a href="/books">Books</a>
                 </li>
                 <li>
                     <a class="nav-link {{ request()->is('/authors') ? 'active' : '' }}" href="{{ route('authors.index') }}">Authors</a>
@@ -30,10 +31,13 @@
                     <a href="#">Book Source</a>
                 </li>
                 <li>
+                    <a href="{{url('rack')}}">Rack</a>
+                </li>
+                <li>
                     <a href="#">Assets</a>
                 </li>
                 <li>
-                    <a href="#">Vendor</a>
+                    <a href="{{route('vendors.index')}}">Vendor</a>
                 </li>
                 <li>
                     <a href="#">Staff Members</a>
