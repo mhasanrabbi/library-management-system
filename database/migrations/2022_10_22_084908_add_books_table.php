@@ -20,7 +20,9 @@ return new class extends Migration
             $table->string('image')->nullable();
             $table->string('isbn', 255);
             $table->string('category', 255);
-            $table->string('author', 255);
+            // $table->string('author', 255);
+            // $table->foreign('category_id')->unsigned()->nullable()->nullOnDelete();
+            $table->integer('author_id')->unsigned()->references('id')->on('authors')->nullOnDelete();
             $table->string('total_books', 255)->nullable();
             $table->string('book_source', 255);
             $table->string('racks', 255);

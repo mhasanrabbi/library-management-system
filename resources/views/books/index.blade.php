@@ -32,7 +32,7 @@
                             <h5 class="card-title">{{ $book->title }}</h5>
                         </a>
                         <a href="">
-                            <h6 class="card-subtitle mb-2 text-muted">By {{ $book->author }}</h6>
+                            <h6 class="card-subtitle mb-2 text-muted">By {{ $book->author->author_name ?? 'N/A' }}</h6>
                         </a>
                         <p class="card-text">{{Str::words($book->description, 10)}}</p>
                         <span class="badge badge-light">{{ $book->category }}</span>
@@ -65,7 +65,7 @@
 
                       
 
-                        <button type="submit" class="btn btn-success {{ $status }}">
+                        <button type="submit" class="btn btn-success {{ ($status)??"" }}">
                             <span><i class="fa fa-shopping-cart" aria-hidden="true"></i></span> add to Cart
                         </button>
 

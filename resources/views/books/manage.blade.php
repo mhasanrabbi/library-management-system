@@ -47,7 +47,7 @@
                             <th scope="row">{{ $book->isbn }}</th>
                             <td>{{ $book->title }}</td>
                             <td>{{ $book->category }}</td>
-                            <td>{{ $book->author }}</td>
+                            <td>{{ $book->author->author_name}}</td>
                             <td>{{ $book->total_books }}</td>
                             <td>{{ $book->book_source }}</td>
                             <td>{{ $book->racks }}</td>

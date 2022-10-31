@@ -16,7 +16,7 @@ class Book extends Model
         'image',
         'isbn',
         'category',
-        'author',
+        'author_id',
         'total_books',
         'book_source',
         'racks',
@@ -27,5 +27,10 @@ class Book extends Model
         if ($filters['search'] ?? false) {
             $query->where('title', 'like', '%' . request('search') . '%')->orWhere('author', 'like', '%' . request('search') . '%')->orWhere('category', 'like', '%' . request('search') . '%')->orWhere('isbn', 'like', '%' . request('search') . '%')->orWhere('rack_no', 'like', '%' . request('search') . '%');
         }
+    }
+
+    public function author()
+    {
+        return $this->belongsTo(Author::class, 'author_id');
     }
 }

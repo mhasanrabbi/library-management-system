@@ -36,12 +36,12 @@
                     @csrf
                     <div class="mb-3">
                         <label for="title" class="form-label">Title</label>
-                        <input type="text" class="form-control" id="title" placeholder="Enter Book Title" name="title">
+                        <input type="text"  value="{{ old('title')}}"class="form-control" id="title" placeholder="Enter Book Title" name="title">
                     </div>
                     <div class="form-floating mb-3">
                         <label for="floatingTextarea2">Description</label>
                         <textarea name="description" class="form-control" placeholder="Book Description"
-                            id="floatingTextarea2" style="height: 100px"></textarea>
+                            id="floatingTextarea2" style="height: 100px">{{ old('description')}}</textarea>
                     </div>
                     <div class="mb-3">
                         <label for="image" class="form-label">Image</label>
@@ -51,21 +51,28 @@
                         <div class="col-6">
                             <div class="mb-3">
                                 <label for="isbn" class="form-label">ISBN</label>
-                                <input type="number" class="form-control" id="isbn" placeholder="ISBN" name="isbn">
+                                <input type="number"  value="{{ old('isbn')}}" class="form-control" id="isbn" placeholder="ISBN" name="isbn">
                             </div>
                         </div>
                         <div class="col-6">
                             <div class="mb-3">
                                 <label for="isbn" class="form-label">Category</label>
-                                <input type="text" class="form-control" id="category" placeholder="Category" name="category">
+                                <input type="text" value="{{ old('category') }}" class="form-control" id="category" placeholder="Category" name="category">
                             </div>
                         </div>
                         <div class="col-6">
                             <div class="mb-3">
-                                <select name="author" class="form-select" aria-label="Default select example">
-                                <option selected>--- Select author ---</option>
+                                <select name="author_id" class="form-select" aria-label="Default select example">
+                                {{-- <option  @if(!empty(old('author_id'))) selected @endif>--- Select author ---</option> --}}
+                                <option   value="{{ old('author_id')}}" selected>
+                                 {{ (($book->author->author_name) ?? "---Select Author----") }}
+                                </option>
                                 @foreach($authors as $key => $author)
-                                <option value="{{ $author->id }}">{{ $author->author_name }}</option>
+                                <option 
+                                @if(old('author_id')) selected @endif
+                                 value="{{ $author->id }}">
+                                 {{ $author->author_name }}
+                                </option>
                                 @endforeach
                             </select>
                             </div>
@@ -82,7 +89,7 @@
                         <div class="col-6">
                             <div class="mb-3">
                                 <label for="book_source_id" class="form-label">Book Source</label>
-                                <input type="text" class="form-control" id="book_source_id" placeholder="Book Source" name="book_source">
+                                <input type="text" class="form-control" value="{{ old('book_source')}}" id="book_source_id" placeholder="Book Source" name="book_source">
                             </div>
                         </div>
                         <div class="col-6">

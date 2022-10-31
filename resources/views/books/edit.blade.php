@@ -59,12 +59,20 @@
                         </div>
                         <div class="col-6">
                             <div class="mb-3">
-                                <select name="author" class="form-select" aria-label="Default select example">
-                                    <option selected>--- Select author ---</option>
+                                <select name="author_id" class="form-select" aria-label="Default select example">
+                                    {{-- <option  @if(!empty(old('author_id'))) selected @endif>--- Select author ---</option> --}}
+                                    <option  class="bg-info text-white" value="{{ old('author_id')}}" selected>
+                                     {{ (($book->author->author_name) ?? "---Select Author----") }}
+                                    </option>
                                     @foreach($authors as $key => $author)
-                                    <option value="{{ $author->author_name }}">{{ $author->author_name }}</option>
+                                    <option 
+                                    @if(old('author_id')) selected @endif
+                                     value="{{ $author->id }}">
+                                     {{ $author->author_name }}
+                                    </option>
                                     @endforeach
                                 </select>
+                               
                             </div>
                         </div>
                         <div class="col-6">

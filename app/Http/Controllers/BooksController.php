@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Author;
 use App\Models\Book;
-use App\Models\BookRack;
+use App\Events\BookCreated;
+use App\Models\Author;
 use App\Models\Vendor;
+use App\Models\BookRack;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Event;
 
 class BooksController extends Controller
 {
@@ -54,7 +56,7 @@ class BooksController extends Controller
             'description' => 'required',
             'isbn' => 'required|numeric',
             'category' => 'required',
-            'author' => 'required',
+            'author_id' => 'required|min:1',
             'total_books' => 'nullable',
             'book_source' => 'required',
             'racks' => 'required',
@@ -64,7 +66,10 @@ class BooksController extends Controller
             $formRequest['image'] = $request->file('image')->store('images', 'public');
         }
 
-        Book::create($formRequest);
+        $book =  Book::create($formRequest);
+        // dd($book->title);
+        Event::dispatch(new BookCreated($book));
+        // Event::dispatch(new BookCreated($book));
 
         return redirect('/books');
     }
@@ -91,7 +96,7 @@ class BooksController extends Controller
             'image',
             'isbn',
             'category',
-            'author',
+            'author_id',
             'total_books',
             'book_source',
             'racks'
