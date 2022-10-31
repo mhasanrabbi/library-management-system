@@ -3,6 +3,7 @@
     <div id="content">
 
         @include('partials.nav')
+        @include('authors.partials.message')
         {{-- @include('authors.partials.message')
         @include('authors.partials.nav') --}}
 
@@ -17,11 +18,11 @@
                             data-target="#authorModal">
                             <i class="fas fa-plus-square"></i> New Author
                         </button>
-                        <form action="{{ route('authors.search') }}" method="POST">
+                        {{-- <form action="{{ route('authors.search') }}" method="POST">
                             @csrf
                             <input type="text" name="search_author" placeholder="Search author by name">
                             <button class="btn btn-outline-primary inline" type="submit">Search</button>
-                        </form>
+                        </form> --}}
                     </div>
                 </div>
             </div>

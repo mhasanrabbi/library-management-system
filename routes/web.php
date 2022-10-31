@@ -46,8 +46,7 @@ Route::middleware( ['auth', 'isadmin'] )->group( function () {
     Route::put( '/manage/authors/{id}', [AuthorController::class, 'update'] )->name( 'manage.authors.update' );
 //delete author
     Route::delete( '/manage/authors/{id}', [AuthorController::class, 'destroy'] )->name( 'manage.authors.destroy' );
-//author search
-    Route::get( '/authors/search' )->name( 'authors.search' );
+
 
 // Book Rack
     Route::get( 'rack', [RackController::class, 'showRack'] );
