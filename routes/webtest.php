@@ -55,14 +55,13 @@ Route::get( '/home', [UserController::class, 'dashboard'] )->name( 'home' );
 
 
 
-<?php
 
 use App\Http\Controllers\AuthorController;
 use App\Http\Controllers\BooksController;
 use App\Http\Controllers\RackController;
-use App\Http\Controllers\UserController;
+// use App\Http\Controllers\UserController;
 use App\Http\Controllers\VendorsController;
-use Illuminate\Support\Facades\Route;
+// use Illuminate\Support\Facades\Route;
 
 Route::get( '/logout', [UserController::class, 'logout'] )->name( 'logout' );
 
@@ -94,8 +93,7 @@ Route::middleware( ['auth', 'isadmin'] )->group( function () {
     Route::put( '/manage/authors/{id}', [AuthorController::class, 'update'] )->name( 'manage.authors.update' );
 //delete author
     Route::delete( '/manage/authors/{id}', [AuthorController::class, 'destroy'] )->name( 'manage.authors.destroy' );
-//author search
-    Route::get( '/authors/search' )->name( 'authors.search' );
+
 
 //    //show all authors
 //     Route::get( '/authors', [AuthorController::class, 'index'] )->name( 'authors.index' );
