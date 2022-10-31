@@ -27,7 +27,7 @@
                     <a href="#">Book Source</a>
                 </li>
                 <li>
-                    <a href="{{url('rack')}}">Rack</a>
+                    <a href="{{ route('rack') }}">Rack</a>
                 </li>
                 <li>
                     <a href="#">Assets</a>

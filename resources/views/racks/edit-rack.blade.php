@@ -2,10 +2,8 @@
 @section('content')
     <!-- Page Content  -->
     <div id="content">
-        @include('partials.nav')
+        @include('racks.partials.nav')
         <div class="container">
-            <a href="{{ url('/rack') }}" class="btn btn-primary float-right mb-3 text-white"><i class="fa fa-arrow-left"
-                    aria-hidden="true"></i> Back</a>
             <form action="{{ route('update.rack') }}" method="POST">
                 @csrf
                 @method('PUT')
@@ -20,7 +18,7 @@
                     <input type="number" class="form-control" id="max_capacity" name="max_capacity" min="0"
                         max="20" value="{{ $rackTable->max_capacity }}">
                 </div>
-                <button type="submit" class="btn btn-success float-right">Update</button>
+                <button type="submit" class="btn btn-success float-right"><i class="fa fa-save" aria-hidden="true"></i> Update</button>
             </form>
         </div>
     </div>

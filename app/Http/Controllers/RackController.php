@@ -22,13 +22,16 @@ class RackController extends Controller
     {
         $validated = $request->validate([
             'rack_name' => 'required|max:255',
-            'max_capacity' => 'required|max:2',
+            'max_capacity' => 'required|max:3',
         ], [
             'rack_name.required' => 'Rack Name is Mandatory!',
             'max_capacity.required' => 'Rack Capacity is Mandatory!',
         ]);
 
-        $validated['available_status'] = 0;
+        $validated['available_status'] = 1;
+        $validated['created_at'] = date('Y-m-d h-i-s');
+        $validated['updated_at'] = date('Y-m-d h-i-s');
+        
         BookRack::create($validated);
         return redirect('rack');
     }
@@ -56,5 +59,11 @@ class RackController extends Controller
     {
         BookRack::where('id', $request->id)->delete();
         return redirect('rack');
+    }
+
+    public function searchRack(Request $request)
+    {
+        $bookRacks = BookRack::where('rack_name', $request->rack_name)->orderBy('id', 'desc')->paginate(10)->withQueryString();
+        return view('racks.index', compact('bookRacks'));
     }
 }
