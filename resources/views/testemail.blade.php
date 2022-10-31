@@ -20,10 +20,13 @@
 </html>
 
 @component('mail::message')
-{{ $mailData['title'] }}
+{{ $mailData['book_name'] }}
+{{ $mailData['book_autor'] }}
+{{ $mailData['book_category'] }}
+{{ $mailData['from_avaiable'] }}
 The body of your message.
 @component('mail::button', ['url' => $mailData['url']])
-Button Text
+ go there and see more.
 @endcomponent
 Thanks,<br>
 {{ config('app.name') }}

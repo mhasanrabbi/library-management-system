@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
-use App\Events\SendMail;
 use Illuminate\Http\Request;
 use App\Events\UserloginHistory;
 use Illuminate\Support\Facades\Auth;
