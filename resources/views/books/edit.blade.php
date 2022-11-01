@@ -59,10 +59,10 @@
                         </div>
                         <div class="col-6">
                             <div class="mb-3">
-                                <select name="author" class="form-select" aria-label="Default select example">
+                                <select name="authors" class="form-select" aria-label="Default select example">
                                     <option selected>--- Select author ---</option>
                                     @foreach($authors as $key => $author)
-                                    <option value="{{ $author->author_name }}">{{ $author->author_name }}</option>
+                                    <option value="{{ $author->author_name }}" @if (old('auhtor') == $key) selected @endif>{{ $author->author_name }}</option>
                                     @endforeach
                                 </select>
                             </div>
@@ -73,7 +73,7 @@
                         <select name="vendor" class="form-select" aria-label="Default select example">
                             <option selected>--- Select vendor ---</option>
                             @foreach($vendors as $key => $vendor)
-                            <option value="{{ $vendor->name }}">{{ $vendor->name }}</option>
+                            <option value="{{ $vendor->name }}" @if (old('vendor') == $key) selected @endif>{{ $vendor->name }}</option>
                             @endforeach
                         </select>
                             </div>
@@ -89,7 +89,7 @@
                             <div class="mb-3"><select name="racks" class="form-select" aria-label="Default select example">
                                 <option selected>--- Select Rack ---</option>
                                 @foreach($racks as $key => $rack)
-                                <option value="{{ $rack->rack_name }}">{{ $rack->rack_name }}</option>
+                                <option value="{{ $rack->rack_name }}" @if (old('rack') == $key) selected @endif>{{ $rack->rack_name }}</option>
                                 @endforeach
                             </select>
                             </div>
