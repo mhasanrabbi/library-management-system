@@ -2,26 +2,23 @@
 
 use App\Http\Controllers\AuthorController;
 use App\Http\Controllers\BooksController;
+use App\Http\Controllers\CartController;
 use App\Http\Controllers\RackController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\VendorsController;
-use App\Http\Controllers\CartController;
-
+use Illuminate\Support\Facades\Request;
 use Illuminate\Support\Facades\Route;
-
-// Route::get( '/', [ProductController::class, 'productList'] )->name( 'products.list' );
-// Route::get( 'cart', [CartController::class, 'cartList'] )->name( 'cart.list' );
-// Route::post( 'cart', [CartController::class, 'addToCart'] )->name( 'cart.store' );
-// Route::post( 'update-cart', [CartController::class, 'updateCart'] )->name( 'cart.update' );
-// Route::post( 'remove', [CartController::class, 'removeCart'] )->name( 'cart.remove' );
-// Route::post( 'clear', [CartController::class, 'clearAllCart'] )->name( 'cart.clear' );
 
 Route::get( '/logout', [UserController::class, 'logout'] )->name( 'logout' );
 
 Route::middleware( ['guest'] )->group( function () {
     Route::get( '/', [UserController::class, 'index'] );
-    Route::post( '/register', [UserController::class, 'validate_registration'] )->name( 'register' );
-    Route::post( '/login', [UserController::class, 'validate_login'] )->name( 'login' );
+
+
+// ... this is POST method
+        Route::post( '/register', [UserController::class, 'validate_registration'] )->name( 'register' );
+        Route::post( '/login', [UserController::class, 'validate_login'] )->name( 'login' );
+    
 } );
 
 // Route::get( '/dashboard', [UserController::class, 'dashboard'] )->name( 'dashboard' );
@@ -29,6 +26,8 @@ Route::middleware( ['guest'] )->group( function () {
 
 Route::middleware( ['auth'] )->group( function () {
     Route::get( '/home', [UserController::class, 'dashboard'] )->name( 'home' );
+
+    // user can access only the page
 
 } );
 
