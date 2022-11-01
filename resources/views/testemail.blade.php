@@ -9,25 +9,12 @@
 <body>
     <h1>Test EMAIL</h1>
 
-    {{-- {{ $mailData['book_name'] }} --}}
-    {{-- <p>Name: {{  $mailData['url'] }}</p>
-    <p>Name: {{  $mailData['book_autor'] }}</p>
-    <p>Name: {{  $mailData['book_category'] }}</p>
-    <p>Name: {{  $mailData['from_avaiable'] }}</p> --}}
-    {{-- <p>Name: {{ $message->book_name }}</p>
-    <p>DOB: {{ $input['book_author'] }}</p> --}}
+    <p>Book Name:  {{ $mailData['book_name'] }}</p>
+    <p>Url : {{  $mailData['url'] }}</p>
+    <p>Book author Name: {{  $mailData['book_autor'] }}</p>
+    <p>Book Category: {{  $mailData['book_category'] }}</p>
+    <p>Book from avaiable: {{  $mailData['from_avaiable'] }}</p>
+  
 </body>
 </html>
 
-@component('mail::message')
-{{ $mailData['book_name'] }}
-{{ $mailData['book_autor'] }}
-{{ $mailData['book_category'] }}
-{{ $mailData['from_avaiable'] }}
-The body of your message.
-@component('mail::button', ['url' => $mailData['url']])
- go there and see more.
-@endcomponent
-Thanks,<br>
-{{ config('app.name') }}
-@endcomponent
