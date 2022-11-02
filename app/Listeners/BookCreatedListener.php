@@ -66,6 +66,8 @@ class BookCreatedListener
 
 
             Mail::to($input['user_email'])->send(new NewbookNotification($input));
+
+            
             // return response()->json([
             //     'message' => 'Email has been sent.'
             // ], Response::HTTP_OK);
