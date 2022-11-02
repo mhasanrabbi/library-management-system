@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthorController;
 use App\Http\Controllers\GuestController;
 
-Route::get('/', [GuestController::class, 'index']);
+Route::get('/', [GuestController::class, 'index'])->name('user.home');
 
 // Book Rack
 Route::get('rack', [RackController::class, 'showRack'])->name('rack');
@@ -61,5 +61,6 @@ Route::get('/books/{id}', [BooksController::class, 'show'])->name('books.show');
 
 
 // show registration view 
-
 Route::get('/user/registrer', [AuthController::class, 'register'])->name('user.register');
+//show login view
+Route::get('/user/login', [AuthController::class, 'login'])->name('user.login');

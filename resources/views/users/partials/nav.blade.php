@@ -1,12 +1,21 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <div class="container-fluid">
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            @if (request()->is('user.register'))
+            
+            @if (request()->routeIs('user.register') || request()->routeIs('user.login'))
                 <ul class="nav navbar-nav mr-auto">
                     <li class="nav-item">
-                        <a class="nav-link">
+                        <a class="nav-link" href="{{ route('user.home') }}">
                             <h4><b>এসো বই পড়ি</b></h4>
                         </a>
+                    </li>
+                </ul>
+                <ul class="nav navbar-nav ml-auto">
+                    <li class="nav-item {{ request()->routeIs('user.login') ? 'active' : ''}}">
+                        <a class="nav-link" href="{{ route('user.login') }}">Log In</a>
+                    </li>
+                    <li class="nav-item {{ request()->routeIs('user.register') ? 'active' : ''}}">
+                        <a class="nav-link" href="{{ route('user.register') }}">Register</a>
                     </li>
                 </ul>
             @else
@@ -25,7 +34,7 @@
                         <button class="btn btn-outline-primary my-2 my-sm-0" type="submit">Search</button>
                     </form>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Log In</a>
+                        <a class="nav-link" href="{{ route('user.login') }}">Log In</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('user.register') }}">Register</a>
