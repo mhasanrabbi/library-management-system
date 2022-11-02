@@ -1,7 +1,7 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <div class="container-fluid">
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            
+
             @if (request()->routeIs('user.register') || request()->routeIs('user.login'))
                 <ul class="nav navbar-nav mr-auto">
                     <li class="nav-item">
@@ -11,10 +11,10 @@
                     </li>
                 </ul>
                 <ul class="nav navbar-nav ml-auto">
-                    <li class="nav-item {{ request()->routeIs('user.login') ? 'active' : ''}}">
+                    <li class="nav-item {{ request()->routeIs('user.login') ? 'active' : '' }}">
                         <a class="nav-link" href="{{ route('user.login') }}">Log In</a>
                     </li>
-                    <li class="nav-item {{ request()->routeIs('user.register') ? 'active' : ''}}">
+                    <li class="nav-item {{ request()->routeIs('user.register') ? 'active' : '' }}">
                         <a class="nav-link" href="{{ route('user.register') }}">Register</a>
                     </li>
                 </ul>
@@ -31,14 +31,24 @@
                         {{-- @csrf --}}
                         <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search"
                             name="search">
-                        <button class="btn btn-outline-primary my-2 my-sm-0" type="submit">Search</button>
+                        <button class="btn-sm btn-outline-primary my-2 my-sm-0" type="submit">Search</button>
                     </form>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ route('user.login') }}">Log In</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ route('user.register') }}">Register</a>
-                    </li>
+                    @if (auth()->user())
+                        <li class="nav-item">
+                            <a class="nav-link"><b>{{ auth()->user()->name }}</b></a>
+                        </li>
+                        <form action="{{ route('user.logout') }}" method="POST">
+                            @csrf
+                            <button type="submit" class="btn-sm btn-outline-danger">Logout</button>
+                        </form>
+                    @else
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('user.login') }}">Log In</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('user.register') }}">Register</a>
+                        </li>
+                    @endif
                 </ul>
             @endif
         </div>

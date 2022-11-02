@@ -10,7 +10,7 @@
             </div>
             <div class="row d-flex">
                 <div class="col-8 justify-content-end">
-                    <form action="#" method="post">
+                    <form action="{{ route('user.dashboard') }}" method="post">
                         @csrf
                         <div class="form-group">
                             <label for="email" style="color: #2c2c54">Email</label>
@@ -24,9 +24,6 @@
                             <label for="password" style="color: #2c2c54">Password</label>
                             <input type="password" name="password" class="form-control" id="password"
                                 placeholder="Enter password" required>
-                            @error('password')
-                                <p class="text-danger mt-2">{{ $message }}</p>
-                            @enderror
                         </div>
 
                         <div class="form-group">

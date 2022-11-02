@@ -8,7 +8,25 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthorController;
 use App\Http\Controllers\GuestController;
 
+//user home for guest               
 Route::get('/', [GuestController::class, 'index'])->name('user.home');
+
+#=========================================================================================
+Route::middleware(['guest'])->group(function () {
+    // show registration view 
+    Route::get('/user/register', [AuthController::class, 'register'])->name('user.register')->middleware('guest');
+    //show login view
+    Route::get('/user/login', [AuthController::class, 'login'])->name('user.login')->middleware('guest');
+});
+
+// register a new user 
+Route::post('/user/create', [AuthController::class, 'store'])->name('user.create');
+//login 
+Route::post('/user/dashboard', [AuthController::class, 'authLogin'])->name('user.dashboard');
+//logout
+Route::post('/user/logout', [AuthController::class, 'logout'])->name('user.logout');
+
+#==========================================================================================
 
 // Book Rack
 Route::get('rack', [RackController::class, 'showRack'])->name('rack');
@@ -58,9 +76,3 @@ Route::post('/books/trashed/{id}/delete', [BooksController::class, 'trashedDestr
 # Books Panel Frontend (Rabbi)
 Route::get('/books', [BooksController::class, 'index'])->name('books.index');
 Route::get('/books/{id}', [BooksController::class, 'show'])->name('books.show');
-
-
-// show registration view 
-Route::get('/user/registrer', [AuthController::class, 'register'])->name('user.register');
-//show login view
-Route::get('/user/login', [AuthController::class, 'login'])->name('user.login');
