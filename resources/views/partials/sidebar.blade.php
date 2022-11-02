@@ -15,7 +15,7 @@
                     <a href="#">Authors</a>
                 </li>
                 <li>
-                    <a href="#">Categories</a>
+                    <a class="nav-link {{ request()->is('/categories') ? 'active' : '' }}" href="{{ route('categories.index') }}">Categories</a>
                 </li>
                 <li>
                     <a href="#">Publications</a>
