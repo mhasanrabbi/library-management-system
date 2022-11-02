@@ -1,15 +1,14 @@
 <?php
 
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\RackController;
 use App\Http\Controllers\VendorsController;
 use App\Http\Controllers\BooksController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthorController;
+use App\Http\Controllers\GuestController;
 
-
-Route::get('/', function () {
-    return view('index');
-});
+Route::get('/', [GuestController::class, 'index']);
 
 // Book Rack
 Route::get('rack', [RackController::class, 'showRack'])->name('rack');
@@ -59,3 +58,8 @@ Route::post('/books/trashed/{id}/delete', [BooksController::class, 'trashedDestr
 # Books Panel Frontend (Rabbi)
 Route::get('/books', [BooksController::class, 'index'])->name('books.index');
 Route::get('/books/{id}', [BooksController::class, 'show'])->name('books.show');
+
+
+// show registration view 
+
+Route::get('/user/registrer', [AuthController::class, 'register'])->name('user.register');
