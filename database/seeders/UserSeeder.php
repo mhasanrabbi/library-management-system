@@ -18,15 +18,37 @@ class UserSeeder extends Seeder
     {
         $users = [
             [
-                'first_name' => 'Samsung',
-                'last_name' => 'Galaxy',
+                'first_name' => 'rakib',
+                'last_name' => 'mohammad',
                 'email' => 'rakib@mail.com',
-                'phone' => 122432,
+                'phone' => 1243982,
                 'user_image' => 'null',
                 'status' => 1,
                 'role' => 1,
                 'password' => Hash::make('12345678'),
-                'is_email_verified' => 0
+                'is_email_verified' => 1
+            ],
+            [
+                'first_name' => 'rabbi',
+                'last_name' => 'hasan',
+                'email' => 'mdmahmudhasanrabbi@gmail.com',
+                'phone' => 1227786432,
+                'user_image' => 'null',
+                'status' => 1,
+                'role' => 1,
+                'password' => Hash::make('12345678'),
+                'is_email_verified' => 1
+            ],
+            [
+                'first_name' => 'kamrul',
+                'last_name' => 'hasan',
+                'email' => 'kamrul@mail.com',
+                'phone' => 120092432,
+                'user_image' => 'null',
+                'status' => 1,
+                'role' => 1,
+                'password' => Hash::make('12345678'),
+                'is_email_verified' => 1
             ],
             [
                 'first_name' => 'rakib',
