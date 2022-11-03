@@ -61,6 +61,13 @@
                         <a href="{{ route('user.login') }}">
                             <p style="color: #2c2c54">Have an account? <span class="text-primary">Login</span></p>
                         </a>
+
+                        <div class="row">
+                            <div class="col-12">
+                                <p style="background-color: #0984e3; color: #2c3e50" class="text-center p-1"><a href="#"><b>Log in with google</b></a></p>
+                            </div>
+                        </div>
+
                     </form>
                 </div>
             </div>

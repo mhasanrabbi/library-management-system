@@ -79,7 +79,7 @@ class AuthController extends Controller
         $user = User::whereEmail($formData['email'])->first();
 
         if (!$user) {
-            return back()->withErrors(['email' => 'Invalid email address']);
+            return back()->withErrors(['email' => 'Email is not registered !!']);
         }
 
         User::where('email', $request->email)->update([
