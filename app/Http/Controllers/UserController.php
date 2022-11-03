@@ -7,6 +7,7 @@ use App\Models\UserVerify;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Events\UserloginHistory;
+use App\Models\Book;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
@@ -96,7 +97,11 @@ class UserController extends Controller
     public function dashboard()
     {
         if (Auth::check()) {
-            return view('dashboard');
+            $data = [
+                'books' => Book::latest()->filter(request(['search']))->paginate(10)
+            ];
+
+            return view('dashboard', $data);
         }
 
         return redirect('/')->with('success', 'you are not allowed to access');

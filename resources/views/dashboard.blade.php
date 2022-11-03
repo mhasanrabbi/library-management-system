@@ -11,57 +11,69 @@
                     <h2 class="admin-heading">Dashboard</h2>
                 </div>
             </div>
-            <div class="row">
-                <div class="col-md-3 mb-4">
-                    <div class="card" style="width: 14rem; margin: 0 auto;">
-                        <div class="card-body text-center">
-                            <p class="card-text">{{ '$authors' }}</p>
-                            <h5 class="card-title mb-0">Authors Listed</h5>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-3">
-                    <div class="card" style="width: 14rem; margin: 0 auto;">
-                        <div class="card-body text-center">
-                            <p class="card-text">{{ '$publishers' }}</p>
-                            <h5 class="card-title mb-0">Publishers Listed</h5>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-3">
-                    <div class="card" style="width: 14rem; margin: 0 auto;">
-                        <div class="card-body text-center">
-                            <p class="card-text">{{ '$categories' }}</p>
-                            <h5 class="card-title mb-0">Categories Listed</h5>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-3">
-                    <div class="card" style="width: 14rem; margin: 0 auto;">
-                        <div class="card-body text-center">
-                            <p class="card-text">{{ '$books' }}</p>
-                            <h5 class="card-title mb-0">Books Listed</h5>
-                        </div>
-                    </div>
-                </div>
 
-                <div class="col-md-3">
-                    <div class="card" style="width: 14rem; margin: 0 auto;">
-                        <div class="card-body text-center">
-                            <p class="card-text">{{ '$students' }}</p>
-                            <h5 class="card-title mb-0">Register Students</h5>
+                
+        
+                <div class="row">
+                    @php
+                        // dd($data) 
+                    @endphp
+                    @foreach($books as $book)
+                    <div class="col-sm-4">
+                        <div class="card mb-3" style="width: 18rem;">
+                         <form action="{{ route('cart.store') }}" method="POST" enctype="multipart/form-data">
+                            @csrf
+                            <img class="card-img-top" src="{{ $book->image ? asset('storage/' . $book->image ) : asset('/images/no-image.png')}}" alt="Book Image">
+                             <div class="card-body">
+                                <a href="{{route('books.show', $book->id)}}">
+                                    <h5 class="card-title">{{ $book->title }}</h5>
+                                </a>
+                                <a href="">
+                                    <h6 class="card-subtitle mb-2 text-muted">By {{ $book->author->author_name ?? 'N/A' }}</h6>
+                                </a>
+                                <p class="card-text">{{Str::words($book->description, 10)}}</p>
+                                <span class="badge badge-light">{{ $book->category }}</span>
+                              </div>
+                               <div class="card-footer">
+        
+                                <input type="hidden" value="{{ $book->id }}" name="id">
+                                <input type="hidden" value="{{ $book->title }}" name="title">
+                                <input type="hidden" value="{{ ($book->price) ?? 10  }}" name="price">
+                                <input type="hidden" value="{{ $book->category }}" name="category">
+                                <input type="hidden" value="{{ $book->image ? asset('storage/' . $book->image ) : asset('/images/no-image.png')}}" name="image">
+                                <input type="hidden" value="1" name="quantity">
+        
+        
+                                    {{-- @php
+                                    
+                                    $status = "active";
+                                    $items = Cart::getContent();   
+                                        foreach ($items as $item) {
+                                            if ($book->id == $item->id){
+        
+                                                $status = "disabled";
+                                            }else
+                                            $status = "";
+                                            
+                                        }
+                                    @endphp
+                               
+                               {{ dump($item) }} --}}
+        
+                              
+        
+                                <button type="submit" class="btn btn-success {{ ($status)??"" }}">
+                                    <span><i class="fa fa-shopping-cart" aria-hidden="true"></i></span> add to Cart
+                                </button>
+        
+                             </div>
+                          </form>
                         </div>
                     </div>
+                    @endforeach
                 </div>
-                <div class="col-md-3">
-                    <div class="card" style="width: 14rem; margin: 0 auto;">
-                        <div class="card-body text-center">
-                            {{-- <p class="card-text">{{ $issued_books' }}</p> --}}
-                            <h5 class="card-title mb-0">Book Issued</h5>
-                        </div>
-                    </div>
-                </div>
-            </div>
+                    
+                @include('books.partials.pagination')
         </div>
     </div>
 @endsection
