@@ -46,7 +46,7 @@ class AuthController extends Controller
             'password' => 'required'
         ]);
 
-        if (Auth::attempt($formData)) {
+        if (Auth::attempt($formData, true)) {
 
             $request->session()->regenerateToken();
             return redirect()->route('user.home');
@@ -57,6 +57,7 @@ class AuthController extends Controller
     //user logout
     public function logout(Request $request){
         Auth::logout();
+        $request->session()->invalidate();
         $request->session()->regenerateToken();
         return redirect()->route('user.home');
     }

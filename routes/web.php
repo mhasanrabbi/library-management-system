@@ -1,23 +1,22 @@
 <?php
 
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\RackController;
-use App\Http\Controllers\VendorsController;
 use App\Http\Controllers\BooksController;
-use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\AuthorController;
 use App\Http\Controllers\GuestController;
+use App\Http\Controllers\AuthorController;
+use App\Http\Controllers\VendorsController;
 
 //user home for guest               
 Route::get('/', [GuestController::class, 'index'])->name('user.home');
 
 #=========================================================================================
-Route::middleware(['guest'])->group(function () {
-    // show registration view 
-    Route::get('/user/register', [AuthController::class, 'register'])->name('user.register')->middleware('guest');
-    //show login view
-    Route::get('/user/login', [AuthController::class, 'login'])->name('user.login')->middleware('guest');
-});
+// show registration view 
+Route::get('/user/register', [AuthController::class, 'register'])->name('user.register')->middleware('guest');
+//show login view
+Route::get('/user/login', [AuthController::class, 'login'])->name('user.login')->middleware('guest');
 
 // register a new user 
 Route::post('/user/create', [AuthController::class, 'store'])->name('user.create');
@@ -25,6 +24,8 @@ Route::post('/user/create', [AuthController::class, 'store'])->name('user.create
 Route::post('/user/dashboard', [AuthController::class, 'authLogin'])->name('user.dashboard');
 //logout
 Route::post('/user/logout', [AuthController::class, 'logout'])->name('user.logout');
+
+// Auth::routes(['verity' => true]);
 
 #==========================================================================================
 
