@@ -2,7 +2,7 @@
     <div class="container-fluid">
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
 
-            @if (request()->routeIs('user.register') || request()->routeIs('user.login'))
+            @if (request()->routeIs('user.register') || request()->routeIs('user.login') || request()->routeIs('user.forget.password'))
                 <ul class="nav navbar-nav mr-auto">
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('user.home') }}">

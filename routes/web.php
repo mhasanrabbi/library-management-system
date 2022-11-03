@@ -25,7 +25,11 @@ Route::post('/user/dashboard', [AuthController::class, 'authLogin'])->name('user
 //logout
 Route::post('/user/logout', [AuthController::class, 'logout'])->name('user.logout');
 
-// Auth::routes(['verity' => true]);
+// password reset =========================================================================
+//show forget pass form
+Route::get('/forget/password', [AuthController::class, 'forget'])->name('user.forget.password');
+// reset password 
+Route::post('/reset/password', [AuthController::class, 'reset'])->name('reset.password');
 
 #==========================================================================================
 

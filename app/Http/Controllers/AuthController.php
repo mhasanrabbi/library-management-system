@@ -62,4 +62,31 @@ class AuthController extends Controller
         return redirect()->route('user.home');
     }
 
+    //show forget form
+    public function forget(){
+        return view('users.forget');
+    }
+
+    //reset new password
+    public function reset(Request $request){
+        $formData = $request->validate([
+            'email' => 'required|email',
+            'password' => 'required|confirmed|min:6'
+        ]);
+
+        $formData['password'] = bcrypt($formData['password']);
+        
+        $user = User::whereEmail($formData['email'])->first();
+
+        if (!$user) {
+            return back()->withErrors(['email' => 'Invalid email address']);
+        }
+
+        User::where('email', $request->email)->update([
+            'password' => $formData['password']
+        ]);   
+
+        return redirect()->route('user.login');
+    }
+
 }
