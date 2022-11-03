@@ -2,12 +2,16 @@
 @section('content')
     <!-- Page Content  -->
     <div id="content">
-        @include('partials.nav')
+        @include('racks.partials.nav')
         <div class="container">
             <div>
                 <h3 class="float-left">All Rack</h3>
-                <a href="{{ route('add.rack') }}" class="btn btn-primary float-right mb-3 text-white"><i class="fa fa-plus"
-                        aria-hidden="true"></i> Add</a>
+                <form class="form-inline float-right" action="{{ route('search.rack') }}" method="GET">
+                    @csrf
+                    <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" name="rack_name">
+                    <button class="btn btn-outline-primary my-2 my-sm-0" type="submit">Search</button>
+                </form>
+
             </div>
             <table class="table table-bordered text-center">
                 <thead>

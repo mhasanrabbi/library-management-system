@@ -2,11 +2,8 @@
 @section('content')
     <!-- Page Content  -->
     <div id="content">
-        @include('partials.nav')
+        @include('racks.partials.nav')
         <div class="container">
-
-            <a href="{{ url('/rack') }}" class="btn btn-primary float-right mb-3 text-white"><i class="fa fa-arrow-left"
-                    aria-hidden="true"></i> Back</a>
 
             <form action="{{ route('save.rack') }}" method="GET">
                 @csrf
@@ -16,11 +13,20 @@
                 </div>
                 <div class="form-group">
                     <label for="max_capacity">Maximum Capacity</label>
-                    <input type="number" class="form-control" id="max_capacity" name="max_capacity"
-                        placeholder="Maximum Capacity" min="0" max="20">
+                    <input type="text" class="form-control" size="4" id="max_capacity" name="max_capacity" maxlength="3"
+                        placeholder="Maximum Capacity" onchange="changeHandler(this)" />
+
                 </div>
-                <button type="submit" class="btn btn-success float-right">Save</button>
+                <button type="submit" class="btn btn-success float-right"><i class="fa fa-save"
+                    aria-hidden="true"></i> Save</button>
             </form>
         </div>
     </div>
+    <script>
+        function changeHandler(val) {
+            if (Number(val.value) > 100) {
+                val.value = 100
+            }
+        }
+    </script>
 @endsection
