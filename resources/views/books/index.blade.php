@@ -20,6 +20,7 @@
                         </a>
                         <p class="card-text">{{Str::words($book->description, 10)}}</p>
                         <span class="badge badge-light">{{ $book->category }}</span>
+                        <button class="btn btn-sm ">Add To Cart</button>
                     </div>
                 </div>
             </div>

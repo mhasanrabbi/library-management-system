@@ -17,6 +17,7 @@
                                 <h6 class="card-subtitle mb-2 text-muted">By {{ $book->author }}</h6>
                                 <p class="card-text">{{ Str::words($book->description, 10) }}</p>
                                 <span class="badge badge-light">{{ $book->category }}</span>
+                                <button class="btn btn-sm">Add To Cart</button>
                             </div>
                         </div>
                     </div>
