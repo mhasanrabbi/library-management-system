@@ -53,6 +53,8 @@
 </script>
 @endsection
 
+
+
 <!--Categories Modal -->
 <div class="modal fade" id="CategoryModal" tabindex="-1" role="dialog" aria-labelledby="CategoryModal" aria-hidden="true">
     <div class="modal-dialog" role="document">
@@ -67,7 +69,7 @@
 
           
 
-            <form action="{{ route('categories.store') }}" method="post">
+            <form action="{{ route('manage.categories.store') }}" method="post">
                 @csrf
                 <div class="modal-body">
                     <div class="form-group">

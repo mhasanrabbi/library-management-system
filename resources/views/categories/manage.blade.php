@@ -8,7 +8,7 @@
             <div class="row mb-1">
                 <div class="col">
                     <h4 class="d-inline" style="color: #34495e"> Categories List For Manage</h4>
-                    <a href="{{ route('categories.index') }}" type="button" class="btn btn-outline-primary text-right"><i
+                    <a href="{{ route('manage.categories.index') }}" type="button" class="btn btn-outline-primary text-right"><i
                             class="fas fa-clipboard-list"></i> Categories List</a>
                 </div>
             </div>

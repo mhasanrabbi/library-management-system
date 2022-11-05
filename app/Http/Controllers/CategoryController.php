@@ -22,7 +22,7 @@ class CategoryController extends Controller
     {
         // dd($request->all());
         $formRequest = $request->validate([
-            'categories' => 'required|min:4|max:30|unique:categories|regex:/^[a-zA-Z- ]*$/'
+            'Category_name' => 'required|min:4|max:30|unique:categories|regex:/^[a-zA-Z- ]*$/'
         ]);
         
 
