@@ -3,8 +3,10 @@
 namespace App\Listeners;
 
 use App\Events\SendMail;
-use Illuminate\Contracts\Queue\ShouldQueue;
+use App\Mail\NewUserRegister;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Queue\InteractsWithQueue;
+use Illuminate\Contracts\Queue\ShouldQueue;
 
 class SendMailFired
 {
@@ -26,6 +28,14 @@ class SendMailFired
      */
     public function handle(SendMail $event)
     {
-        //
+        $token =  $event->credentials->token;
+        $user_email = $event->credentials->user_email;
+
+        Mail::to($user_email)->send(new NewUserRegister($token));
+
+        // Mail::send('verification', ['token' => $token], function ($message) use ($request) {
+        //     $message->to($request->email);
+        //     $message->subject('Email Verification Mail');
+        // });
     }
 }

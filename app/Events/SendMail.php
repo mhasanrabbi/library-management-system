@@ -13,15 +13,15 @@ use Illuminate\Queue\SerializesModels;
 class SendMail
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
-
+    public $credentials;
     /**
      * Create a new event instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct($credentials)
     {
-        //
+        $this->credentials = $credentials;
     }
 
     /**

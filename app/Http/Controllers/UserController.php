@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\SendMail;
 use App\Models\User;
 use App\Models\UserVerify;
 use Illuminate\Support\Str;
@@ -58,15 +59,22 @@ class UserController extends Controller
         ]);
 
         $token = Str::random(64);
+
         UserVerify::create([
             'user_id' => $createUser->id,
             'token' => $token
         ]);
 
-        Mail::send('verification', ['token' => $token], function ($message) use ($request) {
-            $message->to($request->email);
-            $message->subject('Email Verification Mail');
-        });
+        $credentials['token'] = $token;
+        $credentials['user_email'] = $request->email;
+        // dd($token, $credentials);
+
+        Event::dispatch(new SendMail((object) $credentials));
+
+        // Mail::send('verification', ['token' => $token], function ($message) use ($request) {
+        //     $message->to($request->email);
+        //     $message->subject('Email Verification Mail');
+        // });
 
         // return redirect("dashboard")->withSuccess('Great! You have Successfully loggedin');
 

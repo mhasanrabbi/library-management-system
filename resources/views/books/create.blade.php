@@ -38,10 +38,12 @@
                         <label for="title" class="form-label">Title</label>
                         <input type="text"  value="{{ old('title')}}"class="form-control" id="title" placeholder="Enter Book Title" name="title">
                     </div>
-                    <div class="form-floating mb-3">
+                    <div class="mb-3">
                         <label for="floatingTextarea2">Description</label>
                         <textarea name="description" class="form-control" placeholder="Book Description"
-                            id="floatingTextarea2" style="height: 100px">{{ old('description')}}</textarea>
+                            id="floatingTextarea2" style="height: 100px">
+                            {{ old('description')}}
+                        </textarea>
                     </div>
                     <div class="mb-3">
                         <label for="image" class="form-label">Image</label>
