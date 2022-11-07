@@ -1,107 +1,108 @@
 @extends('layouts.layout')
+
+@push('head')
+<script>
+</script>
+@endpush
+
+@if(Session::has('success'))
+<div class="alert alert-success" role="alert">
+    <strong>Successful:</strong>
+    {{ Session::get('success') }}
+</div>
+@endif
+
 @section('content')
 
-<!-- Page Content  -->
 <div id="content">
-
     @include('books.partials.nav')
+    <h1>Cart</h1>
+
+    <table class="table">
+        <thead class="thead-dark">
+            <tr>
+                <th scope="col">Product</th>
+                <th scope="col">Price</th>
+                <th scope="col">Qty</th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php $total = 0; ?>
+            @if (!empty($cart))
+            @foreach ($cart as $item)
+            <?php $total += $item['price'] * $item['qty']; ?>
+            <tr>
+                <td>{{ $item['title'] }}</td>
+                {{-- <td>{{ $item['category'] }}</td> --}}
+                <td>${{ $item['price'] }}</td>
+                <td>{{ $item['qty'] }}</td>
+            </tr>
+            @endforeach
+            @endif
+        </tbody>
+    </table>
+
+    <p>
+        <strong>Total: ${{ $total}}</strong>
+    </p>
+
+    <p>
+        <a class="btn btn-primary btn-lg" href="/pay-with-paypal">
+
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-wallet"
+                viewBox="0 0 16 16">
+                <path
+                    d="M0 3a2 2 0 0 1 2-2h13.5a.5.5 0 0 1 0 1H15v2a1 1 0 0 1 1 1v8.5a1.5 1.5 0 0 1-1.5 1.5h-12A2.5 2.5 0 0 1 0 12.5V3zm1 1.732V12.5A1.5 1.5 0 0 0 2.5 14h12a.5.5 0 0 0 .5-.5V5H2a1.99 1.99 0 0 1-1-.268zM1 3a1 1 0 0 0 1 1h12V2H2a1 1 0 0 0-1 1z" />
+            </svg>
+            Pay with PayPal</a>
+    </p>
+</div>
+
+@endsection
+@section('footer-scripts')
+<script>
+    $(document).ready(function() {
+
+            window.cart = <?php echo json_encode($cart); ?>;
 
 
-    <div class="container">
-        <div class="row">
-            <main class="my-8">
-                <div class="container px-6 mx-auto">
-                    <div class="flex justify-center my-6">
-                        <div
-                            class="flex flex-col w-full p-8 text-gray-800 bg-white shadow-lg pin-r pin-y md:w-4/5 lg:w-4/5">
-                            @if ($message = Session::get('success'))
-                            <div class="p-4 mb-3 bg-green-400 rounded">
-                                <p class="text-green-800">{{ $message }}</p>
-                            </div>
-                            @endif
-                            <h3 class="text-3xl text-bold">Cart List</h3>
-                            <div class="flex-1">
-                                <table class="w-full text-sm lg:text-base" cellspacing="0">
-                                    <thead>
-                                        <tr class="h-12 uppercase">
-                                            <th class="hidden md:table-cell"></th>
-                                            <th class="text-left">Name</th>
-                                            <th class="pl-5 text-left lg:text-right lg:pl-0">
-                                                <span class="lg:hidden" title="Quantity">Qtd</span>
-                                                <span class="hidden lg:inline">Quantity</span>
-                                            </th>
-                                            <th class="hidden text-right md:table-cell"> price</th>
-                                            <th class="hidden text-right md:table-cell"> Remove </th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        @foreach ($cartItems as $item)
-                                        <tr>
-                                            <td class="hidden pb-4 md:table-cell">
-                                                <a href="#">
-                                                    <img style="width: 200px; hight:150px; " src="{{ $item->attributes->image }}" class="w-20 rounded"
-                                                        alt="Thumbnail">
-                                                </a>
-                                            </td>
-                                            <td>
-                                                <a href="#">
-                                                    <p class="mb-2 md:ml-4">{{ $item->name }}</p>
+            updateCartButton();
 
-                                                </a>
-                                            </td>
-                                            <td class="justify-center mt-6 md:justify-end md:flex">
-                                                <div class="h-10 w-28">
-                                                    <div class="relative flex flex-row w-full h-8">
+            $('.add-to-cart').on('click', function(event) {
 
-                                                        <form action="{{ route('cart.update') }}" method="POST">
-                                                            @csrf
-                                                            <input type="hidden" name="id" value="{{ $item->id}}">
-                                                            <input  disabled type="number" name="quantity"
-                                                                value="{{ $item->quantity }}"
-                                                                class="w-6 text-center bg-gray-300" />
-                                                            {{-- <button type="submit" class="btn btn-primary disabled">update</button> --}}
-                                                        </form>
-                                                    </div>
-                                                </div>
-                                            </td>
-                                            <td class="hidden text-right md:table-cell">
-                                                <span class="text-sm font-medium lg:text-base">
-                                                    ${{ ($item->price )?? 10 }}
-                                                </span>
-                                            </td>
-                                            <td class="hidden text-right md:table-cell">
-                                                <form action="{{ route('cart.remove') }}" method="POST">
-                                                    @csrf
-                                                    <input type="hidden" value="{{ $item->id }}" name="id">
-                                                    <button class="btn btn-danger"><i class="fa fa-trash" aria-hidden="true"></i></button>
-                                                </form>
+                var cart = window.cart || [];
+                cart.push({
+                    'id': $(this).data('id'),
+                    'title': $(this).data('title'),
+                    'price': $(this).data('price'),
+                    'qty': $(this).prev('input').val()
+                });
+                window.cart = cart;
 
-                                            </td>
-                                        </tr>
-                                        @endforeach
+                $.ajax('/store/add-to-cart', {
+                    type: 'POST',
+                    data: {
+                        "_token": "{{ csrf_token() }}",
+                        "cart": cart
+                    },
+                    success: function(data, status, xhr) {
 
-                                    </tbody>
-                                </table>
-                                <div>
-                                    Total: ${{ Cart::getTotal() }}
-                                </div>
-                                <div>
-                                    <form action="{{ route('cart.clear') }}" method="POST">
-                                        @csrf
-                                     
-                                        <button class="btn btn-danger"><i class="fa fa-trash" aria-hidden="true"></i>Remove All Cart</button>
-                                    </form>
-                                </div>
+                    }
+                });
 
+                updateCartButton();
+            });
+        })
 
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </main>
+        function updateCartButton() {
 
+            var count = 0;
+            window.cart.forEach(function(item, i) {
 
-        </div>
-       
-    </div>
-    @endsection
+                count += Number(item.qty);
+            });
+
+            $('#items-in-cart').html(count);
+        }
+</script>
+@endsection

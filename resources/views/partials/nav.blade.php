@@ -32,9 +32,7 @@
                         </li>
                         
                         @else
-                        <li class="nav-item">
-                            {{ Cart::getTotalQuantity()}}
-                        </li>
+                    
                         <li class="nav-item">
                             <a class="nav-link" href="#">{{ Auth::user()->first_name }} {{ Auth::user()->last_name }}'s Profile</a>
                         </li>

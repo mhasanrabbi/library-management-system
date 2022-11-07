@@ -16,7 +16,7 @@ class CartController extends Controller
         if ($cart == null)
             $cart = [];
 
-        return view('cart.index')->with('cart', $cart);
+        return view('books.cart')->with('cart', $cart);
     }
 
     public function payWithPaypal()
@@ -71,7 +71,18 @@ class CartController extends Controller
         // return redirect($response['paypal_link']);
         // session(['cart' => []]);
         Session::forget('cart');
-        return redirect('/store')->with("success", "data is going to save");
+        return redirect('/books')->with("success", "data is going to save");
+    }
+
+
+
+    public function addToCart(Request $request)
+    {
+        session()->put('cart', $request->post('cart'));
+
+        return response()->json([
+            'status' => 'added'
+        ]);
     }
 
     public function paypalSuccess()

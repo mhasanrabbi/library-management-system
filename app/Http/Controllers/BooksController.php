@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Book;
 use App\Events\BookCreated;
 use App\Models\Author;
-use App\Models\Vendor;
+use App\Models\Book;
 use App\Models\BookRack;
+use App\Models\Vendor;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Event;
 
@@ -16,81 +16,92 @@ class BooksController extends Controller
     {
         $data = [
             'pageTitle' => 'এসো বই পড়ি | Book List',
-            'books' => Book::latest()->filter(request(['search']))->paginate(10)
+            'books'     => Book::latest()->filter( request( ['search'] ) )->paginate( 10 ),
         ];
+        $cart = session()->get( 'cart' );
+        if ( $cart == null ) {
+            $cart = [];
+        }
 
-        return view('books.index', $data);
+        return view( 'books.index', $data, )->with('cart' ,$cart);
+    }
+    public function booksall()
+    {
+        // $data = ['pageTitle' => 'এসো বই পড়ি | Book List',];
+        $data =  Book::latest()->filter( request( ['search'] ) )->paginate( 10 );
+       
+
+        return json_encode($data);
     }
 
-
-    public function show($id)
+    public function show( $id )
     {
         $data = [
-            'book' => Book::findOrFail($id)
+            'book' => Book::findOrFail( $id ),
         ];
-        return view('books.single', $data);
+        return view( 'books.single', $data );
     }
 
     public function manage()
     {
         $data = [
-            'books' => Book::latest()->filter(request(['search']))->paginate(10)
+            'books' => Book::latest()->filter( request( ['search'] ) )->paginate( 10 ),
         ];
-        return view('books.manage', $data);
+        return view( 'books.manage', $data );
     }
 
     public function create()
     {
-        $data['authors'] = Author::get(['id', 'author_name']);
-        $data['racks'] = BookRack::get(['id', 'rack_name']);
-        $data['vendors'] = Vendor::get(['id', 'name']);
-        return view('books.create', $data);
+
+        $data['authors'] = Author::get( ['id', 'author_name'] );
+        $data['racks'] = BookRack::get( ['id', 'rack_name'] );
+        $data['vendors'] = Vendor::get( ['id', 'name'] );
+        return view( 'books.create', $data );
     }
 
-    public function store(Request $request)
+    public function store( Request $request )
     {
         // dd($request->file('logo'));
 
-        $formRequest = $request->validate([
-            'title' => 'required',
+        $formRequest = $request->validate( [
+            'title'       => 'required',
             'description' => 'required',
-            'isbn' => 'required|numeric',
-            'category' => 'required',
-            'author_id' => 'required|min:1',
+            'isbn'        => 'required|numeric',
+            'category'    => 'required',
+            'author_id'   => 'required|min:1',
             'total_books' => 'nullable',
             'book_source' => 'required',
-            'racks' => 'required',
-        ]);
+            'racks'       => 'required',
+        ] );
 
-        if ($request->hasFile('image')) {
-            $formRequest['image'] = $request->file('image')->store('images', 'public');
+        if ( $request->hasFile( 'image' ) ) {
+            $formRequest['image'] = $request->file( 'image' )->store( 'images', 'public' );
         }
 
-        $book =  Book::create($formRequest);
+        $book = Book::create( $formRequest );
         // dd($book->title);
-        Event::dispatch(new BookCreated($book));
+        Event::dispatch( new BookCreated( $book ) );
         // Event::dispatch(new BookCreated($book));
 
-        return redirect('/books');
+        return redirect( '/books' );
     }
 
-
-    public function edit($id)
+    public function edit( $id )
     {
         $data = [
             'pageTitle' => 'Edit Book',
-            'authors' => Author::get(['id', 'author_name']),
-            'racks' => BookRack::get(['id', 'rack_name']),
-            'vendors' => Vendor::get(['id', 'name']),
-            'book' => Book::findOrFail($id)
+            'authors'   => Author::get( ['id', 'author_name'] ),
+            'racks'     => BookRack::get( ['id', 'rack_name'] ),
+            'vendors'   => Vendor::get( ['id', 'name'] ),
+            'book'      => Book::findOrFail( $id ),
         ];
 
-        return view('books.edit', $data);
+        return view( 'books.edit', $data );
     }
 
-    public function update(Request $request, $id)
+    public function update( Request $request, $id )
     {
-        $formRequest = $request->only([
+        $formRequest = $request->only( [
             'title',
             'description',
             'image',
@@ -99,44 +110,44 @@ class BooksController extends Controller
             'author_id',
             'total_books',
             'book_source',
-            'racks'
-        ]);
+            'racks',
+        ] );
 
-        if ($request->hasFile('image')) {
-            $formRequest['image'] = $request->file('image')->store('images', 'public');
+        if ( $request->hasFile( 'image' ) ) {
+            $formRequest['image'] = $request->file( 'image' )->store( 'images', 'public' );
         }
 
-        Book::where('id', $id)->update($formRequest);
+        Book::where( 'id', $id )->update( $formRequest );
 
-        return redirect()->route('manage.books.index')->with(['message' => 'Book updated successfully!']);
+        return redirect()->route( 'manage.books.index' )->with( ['message' => 'Book updated successfully!'] );
     }
 
-    public function destroy($id)
+    public function destroy( $id )
     {
-        Book::where('id', $id)->delete();
+        Book::where( 'id', $id )->delete();
 
-        return redirect()->route('manage.books.index')->with(['message' => 'Book has been moved to trash!']);
+        return redirect()->route( 'manage.books.index' )->with( ['message' => 'Book has been moved to trash!'] );
     }
 
     public function trashed()
     {
-        $books = Book::onlyTrashed()->latest()->paginate(10);
+        $books = Book::onlyTrashed()->latest()->paginate( 10 );
         // dd($books);
-        return view('books.trashed', compact('books'));
+        return view( 'books.trashed', compact( 'books' ) );
     }
 
-    public function trashedRestore($id)
+    public function trashedRestore( $id )
     {
-        $book = Book::onlyTrashed()->findOrFail($id);
-        $book->restore($id);
-        return redirect()->route('manage.books.index')->with(['message' => 'Book restored successfully!']);
+        $book = Book::onlyTrashed()->findOrFail( $id );
+        $book->restore( $id );
+        return redirect()->route( 'manage.books.index' )->with( ['message' => 'Book restored successfully!'] );
     }
 
-    public function trashedDestroy($id)
+    public function trashedDestroy( $id )
     {
-        $book = Book::onlyTrashed()->findOrFail($id);
+        $book = Book::onlyTrashed()->findOrFail( $id );
         $book->forceDelete();
-        return redirect()->route('books.trashed')->with(['message' => 'Book deleted successfully!']);
+        return redirect()->route( 'books.trashed' )->with( ['message' => 'Book deleted successfully!'] );
     }
 
     // public function search(Request $request)
@@ -145,7 +156,5 @@ class BooksController extends Controller
     //     return $book = Book::where('title', 'LIKE', '%' . $request->search . '%')->get();
     //     return view('books.index', compact('book'));
     // }
-
-
 
 }
