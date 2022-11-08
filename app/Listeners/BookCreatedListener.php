@@ -2,20 +2,11 @@
 
 namespace App\Listeners;
 
-use App\Models\User;
 use App\Events\BookCreated;
-use Illuminate\Support\Carbon;
-use App\Mail\NewbookComingEmail;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Mail;
-use Illuminate\Support\Facades\Session;
-use Illuminate\Queue\InteractsWithQueue;
-use App\Models\ModelUeserGetNotification;
-use Illuminate\Contracts\Queue\ShouldQueue;
-use Illuminate\Support\Facades\Notification;
-use Symfony\Component\HttpFoundation\Response;
+use App\Models\User;
 use App\Notifications\NewBookArrivedNotification;
-use Illuminate\Notifications\Notification as NotificationsNotification;
+use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\Notification;
 
 class BookCreatedListener
 {
@@ -35,7 +26,7 @@ class BookCreatedListener
      * @param  \App\Events\BookCreated  $event
      * @return void
      */
-    public function handle(BookCreated $event)
+    public function handle( BookCreated $event )
     {
         // 'user_email',
         // 'book_name',
@@ -47,24 +38,39 @@ class BookCreatedListener
         // dump($event->book->author->author_name);
         // dump($event->book->category);
 
-
         $detailsBook = $event->book;
         $fromAvailableTime = Carbon::now()->toDateTimeString();
 
         // $users = DB::table('users')->where('role', '=', 0)->get();
 
+
         $users = User::where('role', 0)->get();
-        // dd($users);
+        // foreach($users as $user){
+        //     $usersEmail[] = $user->email;
+        // }
+        // dd($usersEmail);
 
+        // $input['title'] =  'new book added';
+        // $input['book_name'] = $detailsBook->title;
+        // $input['book_autor'] =  $detailsBook->author->author_name;
+        // $input['book_category'] = $detailsBook->category;
+        // $input['from_avaiable'] = $fromAvailableTime;
+        // $input['url'] = 'https://www.abdulla.com';
 
-        $input['title'] =  'new book added';
-        $input['book_name'] = $detailsBook->title;
-        $input['book_autor'] =  $detailsBook->author->author_name;
-        $input['book_category'] = $detailsBook->category;
-        $input['from_avaiable'] = $fromAvailableTime;
-        $input['url'] = 'https://www.abdulla.com';
+        // dd($input);
 
-        Notification::send($users, new NewBookArrivedNotification($input));
+        $details = [
+            'greeting'   => 'Hi Artisan',
+            'body'       => 'This is my first notification from Nicesnippests.com',
+            'thanks'     => 'Thank you for using Nicesnippests.com tuto!',
+            'actionText' => 'View My Site',
+            'actionUrl'  => url( '/' ),
+            'order_id'   => 101,
+        ];
+
+        Notification::send( $users, new NewBookArrivedNotification(  $details) );
+        // Notification::send( $user, new NewBookArrivedNotification( $input ) );
+        // Notification::send( $usersEmail, new NewBookArrivedNotification($input));
 
         // foreach ($users as $user) {
         // $input['user_email'] = $user->email;
@@ -77,7 +83,6 @@ class BookCreatedListener
 
         // $user = User::find($user->email)->toArray();
 
-
         // Mail::to($input['user_email'])->send(new NewbookComingEmail($input));
 
         // return response()->json([
@@ -87,12 +92,7 @@ class BookCreatedListener
         // $saveNotification = ModelUeserGetNotification::create($input);
         // }
 
-
-
-        return redirect()->back()->with('success', 'Your email was sent!');
-
-
-
+        return redirect()->back()->with( 'success', 'Your email was sent!' );
 
         // Mail::send('testemail', $data, function ($message) use ($input) {
         //     $message->to($input['user_email'], "abdulla rakib");
@@ -102,7 +102,6 @@ class BookCreatedListener
         // Mail::to('your_email@gmail.com')->send(new DemoMail($mailData));
 
         // dd("Email is sent successfully.");
-
 
         // $user = User::find($event->userId)->toArray();
 

@@ -2,13 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use App\Events\BookCreated;
-use App\Models\Author;
 use App\Models\Book;
-use App\Models\BookRack;
+use App\Models\User;
+use App\Models\Author;
 use App\Models\Vendor;
+use App\Models\BookRack;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Event;
+use Illuminate\Support\Facades\Notification;
+use App\Notifications\NewBookArrivedNotification;
 
 class BooksController extends Controller
 {
@@ -23,15 +24,14 @@ class BooksController extends Controller
             $cart = [];
         }
 
-        return view( 'books.index', $data, )->with('cart' ,$cart);
+        return view( 'books.index', $data, )->with( 'cart', $cart );
     }
     public function booksall()
     {
         // $data = ['pageTitle' => 'এসো বই পড়ি | Book List',];
-        $data =  Book::latest()->filter( request( ['search'] ) )->paginate( 10 );
-       
+        $data = Book::latest()->filter( request( ['search'] ) )->paginate( 10 );
 
-        return json_encode($data);
+        return json_encode( $data );
     }
 
     public function show( $id )
@@ -80,10 +80,26 @@ class BooksController extends Controller
 
         $book = Book::create( $formRequest );
         // dd($book->title);
-        Event::dispatch( new BookCreated( $book ) );
+
+        $details = [
+            'name'      => 'Abdulla',
+            'greeting'  => 'Hi Artisan',
+            'body'      => 'This is my first notification from Nicesnippests.com',
+            'thanks'    => 'Thank you for using Nicesnippests.com tuto!',
+            'actionText' => 'View My Site',
+            'actionUrl'  => url( '/' ),
+            'order_id'  => 101,
+        ];
+
+        $users = User::where( 'role', 0 )->get();
+        Notification::send( $users, new NewBookArrivedNotification( $details ) );
+
+        // Event::dispatch( new BookCreated( $book ));
         // Event::dispatch(new BookCreated($book));
 
-        return redirect( '/books' );
+        // return redirect( '/books' );
+        return redirect()->back()->with( 'success', 'Your email was sent!' );
+
     }
 
     public function edit( $id )
