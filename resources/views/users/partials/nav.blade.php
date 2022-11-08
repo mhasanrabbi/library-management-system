@@ -2,7 +2,9 @@
     <div class="container-fluid">
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
 
-            @if (request()->routeIs('user.register') || request()->routeIs('user.login') || request()->routeIs('user.forget.password'))
+            @if (request()->routeIs('user.register') ||
+                request()->routeIs('user.login') ||
+                request()->routeIs('user.forget.password'))
                 <ul class="nav navbar-nav mr-auto">
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('user.home') }}">
@@ -21,10 +23,17 @@
             @else
                 <ul class="nav navbar-nav mr-auto">
                     <li class="nav-item">
-                        <a class="nav-link">
+                        <a class="nav-link" href="{{'/'}}">
                             <h4><b>এসো বই পড়ি</b></h4>
                         </a>
                     </li>
+                    @if (!empty(auth()->user()->id))
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('show.carts') }}">
+                                <p>Cart <span class="badge badge-primary">({{ cart_count() }})</span> </p>
+                            </a>
+                        </li>
+                    @endif
                 </ul>
                 <ul class="nav navbar-nav ml-auto">
                     <form class="form-inline ml-5" action="#" method="GET">

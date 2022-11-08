@@ -5,6 +5,15 @@
 
         @include('users.partials.nav')
         <div class="container">
+                @if (session('message'))
+                <div class="row">
+                    <div class="col">
+                        <div class="alert alert-warning">
+                            {{ session('message') }}
+                        </div>
+                    </div>
+                </div>
+                @endif
             <div class="row">
                 @foreach ($books as $book)
                     <div class="col-sm-4">
@@ -17,7 +26,8 @@
                                 <h6 class="card-subtitle mb-2 text-muted">By {{ $book->author }}</h6>
                                 <p class="card-text">{{ Str::words($book->description, 10) }}</p>
                                 <span class="badge badge-light">{{ $book->category }}</span>
-                                <button class="btn btn-sm">Add To Cart</button>
+                                <a href="{{ route('add.cart', [$book->id]) }}" type="button" class="btn btn-success">Add To
+                                    Cart</a>
                             </div>
                         </div>
                     </div>

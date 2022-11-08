@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Author;
 use App\Models\Book;
 use App\Models\BookRack;
+use App\Models\Cart;
 use App\Models\Vendor;
 use Illuminate\Http\Request;
 
