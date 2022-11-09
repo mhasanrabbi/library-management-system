@@ -26,7 +26,7 @@
                                 <h6 class="card-subtitle mb-2 text-muted">By {{ $book->author }}</h6>
                                 <p class="card-text">{{ Str::words($book->description, 10) }}</p>
                                 <span class="badge badge-light">{{ $book->category }}</span>
-                                <a href="{{ route('add.cart', [$book->id]) }}" type="button" class="btn btn-success">Add To
+                                <a href="{{ route('add.cart', [$book->id]) }}" type="button" class="btn btn-success btn-sm">Add To
                                     Cart</a>
                             </div>
                         </div>

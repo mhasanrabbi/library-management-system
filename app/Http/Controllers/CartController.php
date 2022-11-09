@@ -21,7 +21,7 @@ class CartController extends Controller
             // $exists = Cart::where('book_id', $bookId)->where('user_id', $authId)->exists();
             $exists = Cart::where(['book_id' => $bookId, 'user_id' => $authId])->exists();
             if ($exists == true) {
-                return redirect('/')->with(['message' => "You cann't choice same book more then one!"]);
+                return redirect('/')->with(['message' => "You can't choose same book more than once!"]);
             } else {
                 $cart['book_id'] = $bookId;
                 $cart['user_id'] = $authId;
@@ -29,7 +29,7 @@ class CartController extends Controller
                 return redirect('/');
             }
         } else {
-            return redirect('/')->with(['message' => "You cann't choice more then four books!"]);
+            return redirect('/')->with(['message' => "You can't choose more than four books!"]);
         }
     }
 
