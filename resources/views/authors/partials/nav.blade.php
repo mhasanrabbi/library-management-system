@@ -64,6 +64,7 @@
                 <button type="button" class="btn btn-outline-primary" data-toggle="modal" data-target="#authorModal">
                     <i class="fas fa-plus-square"></i> New Author
                 </button>
+
             </ul>
 
             {{-- @if (request()->routeIs('books*'))
@@ -87,7 +88,12 @@
                 <button class="btn btn-outline-primary my-2 my-sm-0" type="submit">Search</button>
             </form>
 
-        </div>
+                <form action="{{ route('user.logout') }}" method="POST">
+                    @csrf
+                    <button type="submit" class="btn-sm btn-outline-danger">Logout</button>
+                </form>
+
+            </div>
     </div>
 </nav>
 

@@ -20,6 +20,12 @@
                         <li class="nav-item">
                             <a class="nav-link" href="{{route('admin.vendors.index')}}">Manage Vendors</a>
                         </li>
+                        <li class="nav-item">
+                            <form action="{{ route('user.logout') }}" method="POST">
+                                @csrf
+                                <button type="submit" class="btn-sm btn-outline-danger">Logout</button>
+                            </form>
+                        </li>
                     </ul>
                 </div>
             </div>

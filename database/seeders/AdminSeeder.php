@@ -19,7 +19,7 @@ class AdminSeeder extends Seeder
             'name' => 'admin',
             'email' => 'admin@admin.com',
             'address' => 'dhaka, bangladesh',
-            'phone' => '01521515857',
+            'phone' => '01122334455',
             'password' => '$2y$10$9UrQOnG7rkawTklBt0Xl4extrhRTbJ3TouHsvHAsy.xHlSmJonCNG',
 
         ])->assignRole('admin', 'editor');
