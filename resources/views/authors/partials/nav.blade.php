@@ -55,11 +55,11 @@
 
                 {{-- new  --}}
                 <li class="nav-item active">
-                    <a class="nav-link" href="{{ route('authors.index') }}">Authors</a>
+                    <a class="nav-link" href="{{ route('admin.authors.index') }}">Authors</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link"
-                        href="{{ route('manage.authors.index') }}"><i class="fas fa-cog"></i> Manage Authors</a>
+                        href="{{ route('admin.manage.authors.index') }}"><i class="fas fa-cog"></i> Manage Authors</a>
                 </li>
                 <button type="button" class="btn btn-outline-primary" data-toggle="modal" data-target="#authorModal">
                     <i class="fas fa-plus-square"></i> New Author
@@ -105,7 +105,7 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <form action="{{ route('authors.store') }}" method="post">
+            <form action="{{ route('admin.authors.store') }}" method="post">
                 @csrf
                 <div class="modal-body">
                     <div class="form-group">

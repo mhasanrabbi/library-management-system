@@ -32,7 +32,7 @@
         @endif
         <div class="row">
             <div class="col">
-                <form action="{{ url('/books') }}" method="POST" enctype="multipart/form-data">
+                <form action="{{ route('admin.manage.books.store') }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     <div class="mb-3">
                         <label for="title" class="form-label">Title</label>

@@ -52,7 +52,7 @@
                             <td>{{ $book->rack_no }}</td>
                             <td>{{ $book->created_at }}</td>
                             <td class="text-center text-danger">
-                                <form action="{{ route('books.trashed.restore', $book->id) }}" method="POST">
+                                <form action="{{ route('admin.books.trashed.restore', $book->id) }}" method="POST">
                                     @csrf
                                     <button type="submit" class="btn btn-success">
                                         Restore
@@ -69,7 +69,7 @@
                             </td>
                         </tr>
                         <!-- Modal -->
-                        <form action="{{ route('books.trashed.destroy', $book->id) }}" method="POST">
+                        <form action="{{ route('admin.books.trashed.destroy', $book->id) }}" method="POST">
                             @csrf
 
                             <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"

@@ -32,7 +32,7 @@
         @endif
         <div class="row">
             <div class="col">
-                <form action="{{route('vendors.store')}}" method="POST">
+                <form action="{{route('admin.vendors.store')}}" method="POST">
                     @csrf
                     <div class="mb-2">
                         <label for="title" class="form-label">Name</label>
@@ -62,7 +62,7 @@
                         <label for="title" class="form-label">SPOC Email(If have)</label>
                         <input type="email" class="form-control" id="email" placeholder="Enter email" name="spoc_email">
                     </div>
-                                      
+
                     <div class="mb-2">
                         <button class="btn btn-primary" type="submit">
                             Add Vendor
@@ -71,5 +71,5 @@
                 </form>
             </div>
         </div>
-        
+
     @endsection

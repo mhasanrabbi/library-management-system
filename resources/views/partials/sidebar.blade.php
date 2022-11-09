@@ -9,10 +9,10 @@
             <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Home</a>
             <ul class="collapse list-unstyled" id="homeSubmenu">
                 <li>
-                    <a href="/books">Books</a>
+                    <a href="{{ route('admin.manage.books.index')}}">Books</a>
                 </li>
                 <li>
-                    <a href="{{ route('authors.index') }}">Authors</a>
+                    <a href="{{ route('admin.authors.index') }}">Authors</a>
                 </li>
                 <li>
                     <a href="#">Categories</a>
@@ -27,13 +27,13 @@
                     <a href="#">Book Source</a>
                 </li>
                 <li>
-                    <a href="{{ route('rack') }}">Rack</a>
+                    <a href="{{ route('admin.rack') }}">Rack</a>
                 </li>
                 <li>
                     <a href="#">Assets</a>
                 </li>
                 <li>
-                    <a href="{{route('vendors.index')}}">Vendor</a>
+                    <a href="{{route('admin.vendors.index')}}">Vendor</a>
                 </li>
                 <li>
                     <a href="#">Staff Members</a>

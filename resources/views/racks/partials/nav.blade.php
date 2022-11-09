@@ -11,14 +11,14 @@
         </button>
 
         <div class="float-right">
-            @if (request()->routeIs('rack'))
-                <a href="{{ route('add.rack') }}" class="btn btn-primary text-white"><i class="fa fa-plus"
+            @if (request()->routeIs('admin.rack'))
+                <a href="{{ route('admin.add.rack') }}" class="btn btn-primary text-white"><i class="fa fa-plus"
                         aria-hidden="true"></i> Add</a>
-            @elseif(request()->routeIs('add.rack') || request()->routeIs('edit.rack'))
-                <a href="{{ route('rack') }}" class="btn btn-secondary text-white"><i class="fa fa-arrow-left"
+            @elseif(request()->routeIs('admin.add.rack') || request()->routeIs('admin.edit.rack'))
+                <a href="{{ route('admin.rack') }}" class="btn btn-secondary text-white"><i class="fa fa-arrow-left"
                         aria-hidden="true"></i> Back</a>
             @else
-                <a href="{{ route('rack') }}" class="btn btn-primary text-white"><i class="fa fa-table"
+                <a href="{{ route('admin.rack') }}" class="btn btn-primary text-white"><i class="fa fa-table"
                         aria-hidden="true"></i> Rack</a>
             @endif
         </div>
