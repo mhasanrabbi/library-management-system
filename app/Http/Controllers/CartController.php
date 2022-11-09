@@ -36,9 +36,10 @@ class CartController extends Controller
     public function showCart()
     {
         $authId = auth()->user()->id;
-        $allCarts = Cart::where('user_id', $authId)->pluck('book_id');
-        $bookLists = Book::whereIn('id', $allCarts)->get();
-        return view('carts.index', compact('bookLists'));
+        $cartLists = Cart::where('user_id', $authId)->get();
+        // $allCarts = Cart::where('user_id', $authId)->pluck('book_id');
+        // $bookLists = Book::whereIn('id', $allCarts)->get();
+        return view('carts.index', ['cartLists' => $cartLists]);
     }
 
     public function checkoutBook(Request $request)
@@ -48,5 +49,10 @@ class CartController extends Controller
             $checkoutId[] = $checkoutList->id;
         }
         dd($checkoutId);
+    }
+
+    public function destroy($id){
+        Cart::where('id', $id)->delete();
+        return redirect()->back()->with(['message' => 'Item has been removed successfully!']);
     }
 }

@@ -90,5 +90,6 @@ Route::post('/books/trashed/{id}/delete', [BooksController::class, 'trashedDestr
 Route::get('add/cart/{id}', [CartController::class, 'addCart'])->name('add.cart');
 Route::get('show/carts', [CartController::class, 'showCart'])->name('show.carts');
 Route::post('checkout/books', [CartController::class, 'checkoutBook'])->name('checkout.books');
+Route::get('carts/item/{id}', [CartController::class, 'destroy'])->name('carts.destroy');
 
 

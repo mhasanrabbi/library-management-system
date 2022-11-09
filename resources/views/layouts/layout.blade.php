@@ -36,7 +36,7 @@
         $("document").ready(function() {
             setTimeout(() => {
                 $("#flash").remove();
-            }, 2000);
+            }, 1000);
         });
     </script>
 
