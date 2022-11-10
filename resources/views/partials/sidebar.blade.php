@@ -21,7 +21,7 @@
                     <a href="#">Publications</a>
                 </li>
                 <li>
-                    <a href="#">Publishers</a>
+                    <a href="{{ asset('publisher') }}">Publishers</a>
                 </li>
                 <li>
                     <a href="#">Book Source</a>
