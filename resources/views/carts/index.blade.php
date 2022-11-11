@@ -35,12 +35,10 @@
                                     <td>{{ $cart->book->title }}</td>
                                     <td>{{ $cart->book->description }}</td>
                                     <td>{{ $cart->book->author }}</td>
-                                    <td>
-                                        <a href="{{route('carts.destroy', $cart->id)}}"
+                                        <a href="{{ route('carts.destroy', $cart->id) }}"
                                             class="btn btn-sm btn-danger">Remove</a>
                                     </td>
                                 </tr>
-                                <input type="hidden" name="text" value="{{ $cartLists }}" />
                             @endforeach
                         @else
                             <td class="text-center">There are no items in your card</td>
