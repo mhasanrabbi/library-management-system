@@ -46,4 +46,24 @@ class RoleController extends Controller
 
         return back()->with('message', 'Role deleted.');
     }
+
+    public function givePermission(Request $request, Role $role)
+    {
+        if ($role->hasPermissionTo($request->permission)) {
+            return back()->with('message', 'Permission exists');
+        }
+        $role->givePermissionTo($request->permission);
+        return back()->with('message', 'Permission assigned');
+    }
+
+    public function revokePermission(Role $role, Permission $permissions)
+    {
+
+        // dd($permissions);
+        if ($role->hasPermissionTo($permissions)) {
+            $role->revokePermissionTo($permissions);
+            return back()->with('message', 'Permission revoked.');
+        }
+        return back()->with('message', 'Permission not exists.');
+    }
 }

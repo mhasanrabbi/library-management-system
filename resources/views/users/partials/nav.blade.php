@@ -28,7 +28,8 @@
                         </a>
                     </li>
                     @if (!empty(auth()->user()->id))
-                        @role('admin')
+                    {{-- {{dd(auth()->user())}} --}}
+                    @role('admin')
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('admin.dashboard') }}">
                                 <p>Admin Panel</p>
