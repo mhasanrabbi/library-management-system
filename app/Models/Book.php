@@ -31,6 +31,6 @@ class Book extends Model
 
     public function borrows()
     {
-        return $this->hasMany(BookBorrow::class);
+        return $this->hasMany(BookBorrow::class)->where('status', 0);
     }
 }
