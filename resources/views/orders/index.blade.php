@@ -58,7 +58,7 @@
                         <td><a href="{{ '/' }}" class="btn btn-warning"><i class="fa fa-angle-left"></i> Back
                                 to Library</a>
                         </td>
-                        <td colspan="2" class="hidden-xs"></td>
+                        <td colspan="4" class="hidden-xs"></td>
                         <td class="hidden-xs text-center"><strong>Total: {{ $myBooks->count() }}</strong></td>
                     </tr>
                 </tfoot>

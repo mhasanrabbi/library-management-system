@@ -35,8 +35,8 @@
                                     <td>{{ $cart->book->title }}</td>
                                     <td>{{ $cart->book->description }}</td>
                                     <td>{{ $cart->book->author }}</td>
-                                        <a href="{{ route('carts.destroy', $cart->id) }}"
-                                            class="btn btn-sm btn-danger">Remove</a>
+                                    <td><a href="{{ route('carts.destroy', $cart->id) }}"
+                                        class="btn btn-sm btn-danger">Remove</a>
                                     </td>
                                 </tr>
                             @endforeach

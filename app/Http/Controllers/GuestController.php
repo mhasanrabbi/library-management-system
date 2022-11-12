@@ -8,9 +8,9 @@ use App\Models\Cart;
 class GuestController extends Controller
 {
     public function index() {
-        
+
         $allBooks = [
-            'books' => Book::latest()->paginate(12)
+            'books' => Book::latest()->with('borrows')->paginate(12)
         ];
         // if (!empty(auth()->user()->id)) {
         //     $authId = auth()->user()->id;

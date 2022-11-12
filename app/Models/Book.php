@@ -28,4 +28,9 @@ class Book extends Model
             $query->where('title', 'like', '%' . request('search') . '%')->orWhere('author', 'like', '%' . request('search') . '%')->orWhere('category', 'like', '%' . request('search') . '%')->orWhere('isbn', 'like', '%' . request('search') . '%')->orWhere('rack_no', 'like', '%' . request('search') . '%');
         }
     }
+
+    public function borrows()
+    {
+        return $this->hasMany(BookBorrow::class);
+    }
 }

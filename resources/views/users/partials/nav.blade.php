@@ -23,29 +23,31 @@
             @else
                 <ul class="nav navbar-nav mr-auto">
                     <li class="nav-item">
-                        <a class="nav-link" href="{{'/'}}">
+                        <a class="nav-link" href="{{ '/' }}">
                             <h5><b>এসো বই পড়ি</b></h5>
                         </a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ route('my.books') }}">
-                            <p>My Books</p>
-                        </a>
-                    </li>
                     @if (!empty(auth()->user()->id))
-                    {{-- {{dd(auth()->user())}} --}}
-                    @role('admin')
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('admin.dashboard') }}">
-                                <p>Dashboard</p>
-                            </a>
-                        </li>
+                        {{-- {{dd(auth()->user())}} --}}
+                        @role('admin')
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('admin.dashboard') }}">
+                                    <p>Dashboard</p>
+                                </a>
+                            </li>
                         @endrole
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('show.carts') }}">
-                                <p>Cart <span class="badge badge-primary">({{ cart_count() }})</span> </p>
-                            </a>
-                        </li>
+                        @role('user')
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('my.books') }}">
+                                    <p>My Books</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('show.carts') }}">
+                                    <p>Cart <span class="badge badge-primary">({{ cart_count() }})</span> </p>
+                                </a>
+                            </li>
+                        @endrole
                     @endif
                 </ul>
                 <ul class="nav navbar-nav ml-auto">
@@ -53,7 +55,7 @@
                         {{-- @csrf --}}
                         <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search"
                             name="search">
-                        <button class="btn-sm btn-outline-primary my-2 my-sm-0" type="submit">Search</button>
+                        <button class="btn btn-outline-primary my-2 my-sm-0" type="submit">Search</button>
                     </form>
                     @if (auth()->user())
                         <li class="nav-item">
@@ -61,7 +63,7 @@
                         </li>
                         <form action="{{ route('user.logout') }}" method="POST">
                             @csrf
-                            <button type="submit" class="btn-sm btn-outline-danger">Logout</button>
+                            <button type="submit" class="btn btn-outline-danger">Logout</button>
                         </form>
                     @else
                         <li class="nav-item">

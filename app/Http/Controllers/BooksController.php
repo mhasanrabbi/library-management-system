@@ -33,8 +33,9 @@ class BooksController extends Controller
     public function manage()
     {
         $data = [
-            'books' => Book::latest()->filter(request(['search']))->paginate(10)
+            'books' => Book::latest()->filter(request(['search']))->with('borrows')->paginate(10)
         ];
+
         return view('books.manage', $data);
     }
 

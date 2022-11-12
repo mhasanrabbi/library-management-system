@@ -26,12 +26,6 @@
                                 <button type="submit" class="btn-sm btn-outline-danger">Logout</button>
                             </form>
                         </li>
-                        <li class="nav-item">
-                            <form action="{{ route('user.logout') }}" method="POST">
-                                @csrf
-                                <button type="submit" class="btn-sm btn-outline-danger">Logout</button>
-                            </form>
-                        </li>
                     </ul>
                 </div>
             </div>

@@ -33,6 +33,7 @@
                             <th scope="col">Category</th>
                             <th scope="col">Author</th>
                             <th scope="col">Total Books</th>
+                            <th scope="col">Sold Books</th>
                             <th scope="col">Book Source</th>
                             <th scope="col">Rack No.</th>
                             <th scope="col">Created_at</th>
@@ -49,6 +50,7 @@
                             <td>{{ $book->category }}</td>
                             <td>{{ $book->author }}</td>
                             <td>{{ $book->total_books }}</td>
+                            <td>{{ $book->borrows->count() }}</td>
                             <td>{{ $book->book_source }}</td>
                             <td>{{ $book->racks }}</td>
                             <td>{{ $book->created_at }}</td>
