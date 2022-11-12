@@ -27,6 +27,11 @@
                             <h5><b>এসো বই পড়ি</b></h5>
                         </a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('my.books') }}">
+                            <p>My Books</p>
+                        </a>
+                    </li>
                     @if (!empty(auth()->user()->id))
                     {{-- {{dd(auth()->user())}} --}}
                     @role('admin')

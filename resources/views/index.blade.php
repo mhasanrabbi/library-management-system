@@ -5,7 +5,7 @@
 
         @include('users.partials.nav')
         <div class="container">
-                @if (session('message'))
+            @if (session('message'))
                 <div class="row">
                     <div class="col">
                         <div class="alert alert-warning">
@@ -13,7 +13,7 @@
                         </div>
                     </div>
                 </div>
-                @endif
+            @endif
             <div class="row">
                 @foreach ($books as $book)
                     <div class="col-sm-4">
@@ -26,8 +26,15 @@
                                 <h6 class="card-subtitle mb-2 text-muted">By {{ $book->author }}</h6>
                                 <p class="card-text">{{ Str::words($book->description, 10) }}</p>
                                 <span class="badge badge-light">{{ $book->category }}</span>
-                                <a href="{{ route('add.cart', [$book->id]) }}" type="button" class="btn btn-success btn-sm">Add To
-                                    Cart</a>
+                                @auth
+                                    <a href="{{ route('add.cart', [$book->id]) }}" type="button"
+                                        class="btn btn-success btn-sm">Add To
+                                        Cart</a>
+                                @else
+                                    <a href="{{ route('user.login') }}" type="button"
+                                        class="btn btn-success btn-sm">Add To
+                                        Cart</a>
+                                @endauth
                             </div>
                         </div>
                     </div>

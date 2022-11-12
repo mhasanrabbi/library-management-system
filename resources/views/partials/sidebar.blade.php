@@ -54,6 +54,7 @@
                 </li>
                 <li>
                     <a href="{{url('admin/permissions')}}">Permissions</a>
+
                 </li>
             </ul>
         </li>

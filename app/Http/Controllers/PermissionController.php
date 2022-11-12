@@ -71,3 +71,4 @@ class PermissionController extends Controller
         return back()->with('message', 'Role not exists.');
     }
 }
+

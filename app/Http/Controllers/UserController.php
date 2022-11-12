@@ -48,6 +48,7 @@ class UserController extends Controller
     public function givePermission(Request $request, User $user)
     {
         dd($user->hasPermissionTo($request->permission));
+
         if ($user->hasPermissionTo($request->permission)) {
             return back()->with('message', 'Permission exists.');
         }
@@ -88,5 +89,5 @@ class UserController extends Controller
         $user->delete();
 
         return back()->with('message', 'User deleted');
-    }
+        }
 }
