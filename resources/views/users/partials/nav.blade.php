@@ -23,8 +23,13 @@
             @else
                 <ul class="nav navbar-nav mr-auto">
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ '/' }}">
+                        <a class="nav-link" href="{{'/'}}">
                             <h4><b>এসো বই পড়ি</b></h4>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('my.books') }}">
+                            <p>My Books</p>
                         </a>
                     </li>
                     @if (!empty(auth()->user()->id))
@@ -35,11 +40,6 @@
                             </a>
                         </li>
                         @endrole
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('my.books') }}">
-                                <p>My Books</p>
-                            </a>
-                        </li>
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('show.carts') }}">
                                 <p>Cart <span class="badge badge-primary">({{ cart_count() }})</span> </p>
