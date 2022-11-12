@@ -17,10 +17,10 @@
             <table id="cart" class="table table-hover table-condensed">
                 <thead>
                     <tr>
-                        <th style="width:10%">Image</th>
-                        <th style="width:20%">Book Name</th>
-                        <th style="width:40%">Description</th>
-                        <th style="width:10%">Author Name</th>
+                        <th style="width:15%">Image</th>
+                        <th style="width:15%">Book Name</th>
+                        <th style="width:35%">Description</th>
+                        <th style="width:15%">Author Name</th>
                         <th style="width:10%">Return Date</th>
                         <th style="width:10%">Due Date</th>
                     </tr>
@@ -30,7 +30,7 @@
                     @unless(empty($myBooks))
                         @foreach ($myBooks as $myBook)
                             <tr>
-                                <td>{{ $myBook->book->image }}</td>
+                                <td> <img src="{{ $myBook->book->image ? asset('storage/images/'.$myBook->book->image) : asset('storage/images/book.png') }}" width="100" height="100" alt="null"> </td>
                                 <td>{{ $myBook->book->title }}</td>
                                 <td>{{ $myBook->book->description }}</td>
                                 <td>{{ $myBook->book->author }}</td>
@@ -58,7 +58,7 @@
                         <td><a href="{{ '/' }}" class="btn btn-warning"><i class="fa fa-angle-left"></i> Back
                                 to Library</a>
                         </td>
-                        <td colspan="2" class="hidden-xs"></td>
+                        <td colspan="4" class="hidden-xs"></td>
                         <td class="hidden-xs text-center"><strong>Total: {{ $myBooks->count() }}</strong></td>
                     </tr>
                 </tfoot>
