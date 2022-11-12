@@ -41,10 +41,6 @@
                         <label for="title" class="form-label">Role Name</label>
                         <input type="text" class="form-control" id="title" placeholder="Enter Role" name="name"  value="{{ $role->name }}">
                     </div>
-<<<<<<< HEAD
-=======
-
->>>>>>> 9178acc (test)
                     <div class="mb-3">
                         <button class="btn btn-primary" type="submit">
                             Update
@@ -53,7 +49,6 @@
                 </form>
             </div>
         </div>
-<<<<<<< HEAD
         <div class="row pt-2 bg-info">
             <div class="col">
                 <h4>Roles Permission</h4>
@@ -94,8 +89,6 @@
                 </div>
             </div>
         </div>
-=======
->>>>>>> 9178acc (test)
     </div>
 
     @endsection
