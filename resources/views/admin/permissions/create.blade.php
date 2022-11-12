@@ -23,6 +23,15 @@
             </div>
         </div>
         @endif
+        @if (session('message'))
+        <div class="row">
+            <div class="col">
+                <div class="alert alert-warning">
+                    {{ session('message') }}
+                </div>
+            </div>
+        </div>
+        @endif
         <div class="row">
             <div class="col">
                 <a href="{{ route('admin.permissions.index')}}" class="btn btn-sm btn-primary mb-2">Permissions Index</a>

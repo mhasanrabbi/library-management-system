@@ -33,6 +33,13 @@
                         </a>
                     </li>
                     @if (!empty(auth()->user()->id))
+                    @role('admin')
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('admin.dashboard') }}">
+                                <p>Admin Panel</p>
+                            </a>
+                        </li>
+                        @endrole
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('show.carts') }}">
                                 <p>Cart <span class="badge badge-primary">({{ cart_count() }})</span> </p>
