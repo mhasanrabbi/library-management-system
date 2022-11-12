@@ -48,7 +48,6 @@ class PermissionController extends Controller
 
         return back()->with('message', 'Permission deleted.');
     }
-
     public function assignRole(Request $request, Permission $permission)
     {
         // dd($request->all());

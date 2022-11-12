@@ -51,6 +51,10 @@
                 </li>
                 <li>
                     <a href="{{url('admin/roles')}}">Roles</a>
+                    <a href="{{url('admin/roles')}}">Roles</a>
+                </li>
+                <li>
+                    <a href="{{url('admin/permissions')}}">Permissions</a>
                 </li>
                 <li>
                     <a href="{{url('admin/permissions')}}">Permissions</a>
