@@ -31,9 +31,9 @@ class RackController extends Controller
         $validated['available_status'] = 1;
         $validated['created_at'] = date('Y-m-d h-i-s');
         $validated['updated_at'] = date('Y-m-d h-i-s');
-        
+
         BookRack::create($validated);
-        return redirect('rack');
+        return redirect('admin/rack');
     }
 
     public function editRack($id)
@@ -52,13 +52,13 @@ class RackController extends Controller
             'max_capacity.required' => 'Rack Capacity is Mandatory!',
         ]);
         BookRack::where('id', $request->id)->update($validated);
-        return redirect('rack');
+        return redirect('admin/rack');
     }
 
     public function deleteRack(Request $request)
     {
         BookRack::where('id', $request->id)->delete();
-        return redirect('rack');
+        return redirect('admin/rack');
     }
 
     public function searchRack(Request $request)

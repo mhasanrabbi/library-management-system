@@ -49,7 +49,7 @@
                             <td>{{$vendor->email}} </td>
                             <td>{{$vendor->address}} </td>
                             <td class="text-center text-success">
-                                <a href="{{ route('vendors.edit', $vendor->id) }}" class="btn btn-success"><i
+                                <a href="{{ route('admin.vendors.edit', $vendor->id) }}" class="btn btn-success"><i
                                         class="fas fa-edit"></i></a>
                             </td>
                             <td class="text-center text-danger">
@@ -64,7 +64,7 @@
 
 
                         <!-- Modal -->
-                        <form action="{{ route('vendors.destroy', $vendor->id) }}" method="POST">
+                        <form action="{{ route('admin.vendors.destroy', $vendor->id) }}" method="POST">
                             @csrf
                             @method('delete')
 

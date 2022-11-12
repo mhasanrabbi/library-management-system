@@ -53,7 +53,7 @@
                             <td>{{ $book->racks }}</td>
                             <td>{{ $book->created_at }}</td>
                             <td class="text-center text-success">
-                                <a href="{{ route('manage.books.edit', $book->id) }}" class="btn btn-success"><i
+                                <a href="{{ route('admin.manage.books.edit', $book->id) }}" class="btn btn-success"><i
                                         class="fas fa-edit"></i></a>
                             </td>
                             <td class="text-center text-danger">
@@ -64,7 +64,7 @@
                             </td>
                         </tr>
                         <!-- Modal -->
-                        <form action="{{ route('manage.books.destroy', $book->id) }}" method="POST">
+                        <form action="{{ route('admin.manage.books.destroy', $book->id) }}" method="POST">
                             @csrf
                             @method('delete')
 

@@ -31,7 +31,7 @@ class AuthorController extends Controller
         ]);
 
         Author::create($formRequest);
-        return redirect()->route('authors.index')->with('message', 'Author created successfully!');
+        return redirect()->route('admin.authors.index')->with('message', 'Author created successfully!');
     }
 
     //show all author for manage
@@ -55,7 +55,8 @@ class AuthorController extends Controller
     }
 
     //delete author
-    public function destroy($id) {
+    public function destroy($id)
+    {
 
         Author::where('id', $id)->delete();
 

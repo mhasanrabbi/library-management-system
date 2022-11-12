@@ -6,7 +6,7 @@
         <div class="container">
             <div>
                 <h3 class="float-left">All Rack</h3>
-                <form class="form-inline float-right" action="{{ route('search.rack') }}" method="GET">
+                <form class="form-inline float-right" action="{{ route('admin.search.rack') }}" method="GET">
                     @csrf
                     <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" name="rack_name">
                     <button class="btn btn-outline-primary my-2 my-sm-0" type="submit">Search</button>
@@ -33,11 +33,11 @@
                             <td>{{ $bookRack->available_status > 0 ? 'Available' : 'Unavailable' }}</td>
                             <td>{{ date('d-m-Y', strtotime($bookRack->created)) }}</td>
                             <td>
-                                <a title="Edit" href="{{ route('edit.rack', [$bookRack->id]) }}"> <i class='fas fa-edit'
+                                <a title="Edit" href="{{ route('admin.edit.rack', [$bookRack->id]) }}"> <i class='fas fa-edit'
                                         style='color:rgb(97, 96, 96)'></i> </a>
                             </td>
                             <td>
-                                <form method="post" action="{{ route('delete.book.rack', [$bookRack->id]) }}">
+                                <form method="post" action="{{ route('admin.delete.book.rack', [$bookRack->id]) }}">
                                     @method('delete')
                                     @csrf
                                     <input type="hidden" name="cityId" value="{{ $bookRack->id }}">

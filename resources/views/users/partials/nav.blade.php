@@ -24,7 +24,7 @@
                 <ul class="nav navbar-nav mr-auto">
                     <li class="nav-item">
                         <a class="nav-link" href="{{'/'}}">
-                            <h4><b>এসো বই পড়ি</b></h4>
+                            <h5><b>এসো বই পড়ি</b></h5>
                         </a>
                     </li>
                     <li class="nav-item">
@@ -33,10 +33,11 @@
                         </a>
                     </li>
                     @if (!empty(auth()->user()->id))
+                    {{-- {{dd(auth()->user())}} --}}
                     @role('admin')
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('admin.dashboard') }}">
-                                <p>Admin Panel</p>
+                                <p>Dashboard</p>
                             </a>
                         </li>
                         @endrole

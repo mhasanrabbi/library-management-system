@@ -15,7 +15,7 @@
         </div>
         <div class="row">
             <div class="col">
-                <form action="{{ route('vendors.update', $vendor->id) }}" method="POST">
+                <form action="{{ route('admin.vendors.update', $vendor->id) }}" method="POST">
                     @csrf
                     @method('put')
                     <div class="mb-2">
@@ -28,7 +28,7 @@
                         <input type="text" class="form-control" id="name" placeholder="Enter Mobile" name="mobile"
                             value="{{$vendor->mobile}}">
                     </div>
-                   
+
                     <div class="mb-2">
                         <label for="name" class="form-label">Email</label>
                         <input type="text" class="form-control" id="name" placeholder="Enter Email" name="email"
@@ -39,7 +39,7 @@
                         <input type="text" class="form-control" id="name" placeholder="Enter Address" name="address"
                             value="{{$vendor->address}}">
                     </div>
-                                      
+
                     <div class="mb-3">
                         <button class="btn btn-primary" type="submit">
                             Update

@@ -35,44 +35,6 @@ Route::get('/forget/password', [AuthController::class, 'forget'])->name('user.fo
 // reset password
 Route::post('/reset/password', [AuthController::class, 'reset'])->name('reset.password');
 
-#==========================================================================================
-
-
-// # Books Panel Frontend (Rabbi)
-Route::get('/admin', [BooksController::class, 'index'])->name('books.index');
-Route::get('/admin/{id}', [BooksController::class, 'show'])->name('books.show');
-
-// Route::prefix('admin')->group(function () {
-// Book Rack
-Route::get('rack', [RackController::class, 'showRack'])->name('rack');
-Route::get('add/rack', [RackController::class, 'addRack'])->name('add.rack');
-Route::get('save/rack', [RackController::class, 'saveRack'])->name('save.rack');
-Route::get('edit/rack/{id}', [RackController::class, 'editRack'])->name('edit.rack');
-Route::put('update/rack', [RackController::class, 'updateRack'])->name('update.rack');
-Route::delete('delete/rack/{id}', [RackController::class, 'deleteRack'])->name('delete.book.rack');
-Route::get('search/rack', [RackController::class, 'searchRack'])->name('search.rack');
-
-# Vendors (Azhar)
-Route::get('vendors', [VendorsController::class, 'index'])->name('vendors.index');
-Route::get('vendors/create', [VendorsController::class, 'create'])->name('vendors.create');
-Route::post('/vendors', [VendorsController::class, 'store'])->name('vendors.store');
-Route::get('vendors/{id}/edit', [VendorsController::class, 'edit'])->name('vendors.edit');
-Route::put('/vendors/{id}', [VendorsController::class, 'update'])->name('vendors.update');
-Route::delete('/vendors/{id}', [VendorsController::class, 'destroy'])->name('vendors.destroy');
-
-# Authors (Kamrul)
-//show all authors
-Route::get('/authors', [AuthorController::class, 'index'])->name('authors.index');
-//store new author
-Route::post('/authors', [AuthorController::class, 'store'])->name('authors.store');
-//show all authors for manage
-Route::get('/manage/authors', [AuthorController::class, 'manage'])->name('manage.authors.index');
-//update author
-Route::put('/manage/authors/{id}', [AuthorController::class, 'update'])->name('manage.authors.update');
-//delete author
-Route::delete('/manage/authors/{id}', [AuthorController::class, 'destroy'])->name('manage.authors.destroy');
-//author search
-Route::get('/authors/search')->name('authors.search');
 
 Route::middleware(['auth', 'role:admin'])->name('admin.')->prefix('admin')->group(function () {
     // # Books Panel Frontend (Rabbi)
@@ -139,18 +101,12 @@ Route::middleware(['auth', 'role:admin'])->name('admin.')->prefix('admin')->grou
     Route::delete('/users/{user}/permissions/{permission}', [UserController::class, 'revokePermission'])->name('users.permissions.revoke');
 });
 
-# Book Trash
-Route::get('/books/trashed', [BooksController::class, 'trashed'])->name('books.trashed');
-Route::post('/books/trashed/{id}/restore', [BooksController::class, 'trashedRestore'])->name('books.trashed.restore');
-Route::post('/books/trashed/{id}/delete', [BooksController::class, 'trashedDestroy'])->name('books.trashed.destroy');
-
-// });
 
 # Cart
 Route::get('add/cart/{id}', [CartController::class, 'addCart'])->name('add.cart');
 Route::get('show/carts', [CartController::class, 'showCart'])->name('show.carts');
+
 Route::post('checkout/books', [CartController::class, 'checkoutBook'])->name('checkout.books');
 Route::get('carts/item/{id}', [CartController::class, 'destroy'])->name('carts.destroy');
 Route::get('show/my-books', [CartController::class, 'myBooks'])->name('my.books');
-
 

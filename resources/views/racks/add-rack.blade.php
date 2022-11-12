@@ -5,7 +5,7 @@
         @include('racks.partials.nav')
         <div class="container">
 
-            <form action="{{ route('save.rack') }}" method="GET">
+            <form action="{{ route('admin.save.rack') }}" method="GET">
                 @csrf
                 <div class="form-group">
                     <label for="rack_name">Rack Name</label>

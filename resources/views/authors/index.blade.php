@@ -8,7 +8,7 @@
             <div class="row">
                 <div class="col mb-2">
                     <div class="text-right p-2" style="background-color: #f5f6fa">
-                        <a href="{{ route('manage.authors.index') }}" type="button" class="btn btn-outline-primary"><i
+                        <a href="{{ route('admin.manage.authors.index') }}" type="button" class="btn btn-outline-primary"><i
                                 class="fas fa-cog"></i>
                             Authors Manage</a>
                         <button type="button" class="btn btn-outline-primary" data-toggle="modal"
@@ -67,7 +67,7 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <form action="{{ route('authors.store') }}" method="post">
+            <form action="{{ route('admin.authors.store') }}" method="post">
                 @csrf
                 <div class="modal-body">
                     <div class="form-group">
