@@ -44,13 +44,13 @@
             <a href="#">About</a>
         </li>
         <li>
-            <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">User</a>
+            <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">User Management</a>
             <ul class="collapse list-unstyled" id="pageSubmenu">
                 <li>
-                    <a href="#">Log In</a>
+                    <a href="{{url('admin/roles')}}">Roles</a>
                 </li>
                 <li>
-                    <a href="#">Register</a>
+                    <a href="{{url('admin/permissions')}}">Permissions</a>
                 </li>
                 <li>
                     <a href="#">User Profile</a>

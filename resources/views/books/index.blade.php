@@ -12,7 +12,11 @@
                 <div class="card mb-3" style="width: 18rem;">
                     <img class="card-img-top" src="{{ $book->image ? asset('storage/' . $book->image ) : asset('/images/no-image.png')}}" alt="Book Image">
                     <div class="card-body">
+<<<<<<< HEAD
                         <a href="{{route('books.show', $book->id)}}">
+=======
+                        <a href="#">
+>>>>>>> a809e17 (crud roles and permissions)
                             <h5 class="card-title">{{ $book->title }}</h5>
                         </a>
                         <a href="">

@@ -37,7 +37,12 @@
                 <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" name="search">
                 <button class="btn btn-outline-primary my-2 my-sm-0" type="submit">Search</button>
             </form>
+
             @endif
+            <form action="{{ route('user.logout') }}" method="POST">
+                @csrf
+                <button type="submit" class="btn-sm btn-outline-danger">Logout</button>
+            </form>
         </div>
     </div>
 </nav>
