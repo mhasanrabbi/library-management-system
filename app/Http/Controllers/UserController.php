@@ -47,6 +47,7 @@ class UserController extends Controller
 
     public function givePermission(Request $request, User $user)
     {
+        dd($user->hasPermissionTo($request->permission));
         if ($user->hasPermissionTo($request->permission)) {
             return back()->with('message', 'Permission exists.');
         }
@@ -63,13 +64,29 @@ class UserController extends Controller
         return back()->with('message', 'Permission does not exists.');
     }
 
+    // public function destroy(User $user)
+    // {
+    //     dd(User::all()->except(auth()->id()));
+    //     // dd($user);
+    //     if ($user->hasRole('admin')) {
+
+    //         return back()->with('message', 'You are an Admin.');
+    //     }
+    //     User::where('id', $request->id)->delete();
+    //     // $user->delete();
+
+    //     return back()->with('message', 'User deleted.');
+    // }
+
     public function destroy(User $user)
     {
+        dd($user);
         if ($user->hasRole('admin')) {
-            return back()->with('message', 'you are admin.');
+            return back()->with('message', 'You are an admin');
         }
+        // User::where('id', $request->id)->delete();
         $user->delete();
 
-        return back()->with('message', 'User deleted.');
+        return back()->with('message', 'User deleted');
     }
 }

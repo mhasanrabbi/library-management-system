@@ -38,7 +38,7 @@
                             <td>{{$user->email}}</td>
 
                             <td class="text-center text-success" colspan="2">
-                                <a href="{{ route('admin.users.show', $user->id) }}" class="btn btn-primary btn-sm">Roles</a>
+                                <a href="{{ route('admin.users.show', $user->id) }}" class="btn btn-primary btn-sm">Assign Role</a>
                                         <button type="button" class="btn btn-danger btn-sm" data-toggle="modal"
                                     data-target="#exampleModal">
                                     <i class="fas fa-trash"></i>
@@ -46,7 +46,8 @@
                             </td>
                         </tr>
                         <!-- Modal -->
-                        <form action="{{ route('admin.users.destroy', $user->id) }}" method="POST">
+                        <form action="{{ route('admin.users.destroy', [$user->id]) }}" method="POST">
+
                             @csrf
                             @method('delete')
 
