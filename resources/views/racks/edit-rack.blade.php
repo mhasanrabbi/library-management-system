@@ -4,7 +4,7 @@
     <div id="content">
         @include('racks.partials.nav')
         <div class="container">
-            <form action="{{ route('update.rack') }}" method="POST">
+            <form action="{{ route('admin.update.rack') }}" method="POST">
                 @csrf
                 @method('PUT')
                 <input type="hidden" name="id" id="id" value="{{ $rackTable->id }}">

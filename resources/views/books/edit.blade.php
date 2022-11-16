@@ -16,7 +16,7 @@
         </div>
         <div class="row">
             <div class="col">
-                <form action="{{ route('manage.books.update', $book->id) }}" method="POST"
+                <form action="{{ route('admin.manage.books.update', $book->id) }}" method="POST"
                     enctype="multipart/form-data">
                     @csrf
                     @method('put')

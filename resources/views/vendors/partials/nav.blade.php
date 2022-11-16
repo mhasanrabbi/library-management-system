@@ -12,13 +12,19 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="nav navbar-nav ml-auto">
                         <li class="nav-item active">
-                            <a class="nav-link" href="{{route('vendors.index')}}">Vendors</a>
+                            <a class="nav-link" href="{{route('admin.vendors.index')}}">Vendors</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{{route('vendors.create')}}">Add Vendor</a>
+                            <a class="nav-link" href="{{route('admin.vendors.create')}}">Add Vendor</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{{route('vendors.index')}}">Manage Vendors</a>
+                            <a class="nav-link" href="{{route('admin.vendors.index')}}">Manage Vendors</a>
+                        </li>
+                        <li class="nav-item">
+                            <form action="{{ route('user.logout') }}" method="POST">
+                                @csrf
+                                <button type="submit" class="btn-sm btn-outline-danger">Logout</button>
+                            </form>
                         </li>
                     </ul>
                 </div>

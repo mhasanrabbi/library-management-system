@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Author;
 use App\Models\Book;
 use App\Models\BookRack;
+use App\Models\Cart;
 use App\Models\Vendor;
 use Illuminate\Http\Request;
 
@@ -32,8 +33,9 @@ class BooksController extends Controller
     public function manage()
     {
         $data = [
-            'books' => Book::latest()->filter(request(['search']))->paginate(10)
+            'books' => Book::latest()->filter(request(['search']))->with('borrows')->paginate(10)
         ];
+
         return view('books.manage', $data);
     }
 
@@ -66,7 +68,7 @@ class BooksController extends Controller
 
         Book::create($formRequest);
 
-        return redirect('/books');
+        return redirect()->route('admin.manage.books.index')->with(['message' => 'Book added successfully!']);
     }
 
 
@@ -103,14 +105,14 @@ class BooksController extends Controller
 
         Book::where('id', $id)->update($formRequest);
 
-        return redirect()->route('manage.books.index')->with(['message' => 'Book updated successfully!']);
+        return redirect()->route('admin.manage.books.index')->with(['message' => 'Book updated successfully!']);
     }
 
     public function destroy($id)
     {
         Book::where('id', $id)->delete();
 
-        return redirect()->route('manage.books.index')->with(['message' => 'Book has been moved to trash!']);
+        return redirect()->route('admin.manage.books.index')->with(['message' => 'Book has been moved to trash!']);
     }
 
     public function trashed()
@@ -124,14 +126,14 @@ class BooksController extends Controller
     {
         $book = Book::onlyTrashed()->findOrFail($id);
         $book->restore($id);
-        return redirect()->route('manage.books.index')->with(['message' => 'Book restored successfully!']);
+        return redirect()->route('admin.manage.books.index')->with(['message' => 'Book restored successfully!']);
     }
 
     public function trashedDestroy($id)
     {
         $book = Book::onlyTrashed()->findOrFail($id);
         $book->forceDelete();
-        return redirect()->route('books.trashed')->with(['message' => 'Book deleted successfully!']);
+        return redirect()->route('admin.books.trashed')->with(['message' => 'Book deleted successfully!']);
     }
 
     // public function search(Request $request)

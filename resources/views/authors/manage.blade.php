@@ -8,7 +8,7 @@
             <div class="row mb-1">
                 <div class="col">
                     <h4 class="d-inline" style="color: #34495e">Authors List For Manage</h4>
-                    <a href="{{ route('authors.index') }}" type="button" class="btn btn-outline-primary text-right"><i
+                    <a href="{{ route('admin.authors.index') }}" type="button" class="btn btn-outline-primary text-right"><i
                             class="fas fa-clipboard-list"></i> Authors List</a>
                 </div>
             </div>
@@ -61,7 +61,7 @@
                                                         <span aria-hidden="true">&times;</span>
                                                     </button>
                                                 </div>
-                                                <form action="{{ route('manage.authors.update', $author->id) }}" method="post">
+                                                <form action="{{ route('admin.manage.authors.update', $author->id) }}" method="post">
                                                     @csrf
                                                     @method('put')
                                                     <div class="modal-body">
@@ -100,7 +100,7 @@
                                                         <span aria-hidden="true">&times;</span>
                                                     </button>
                                                 </div>
-                                                <form action="{{ route('manage.authors.destroy', $author->id) }}"
+                                                <form action="{{ route('admin.manage.authors.destroy', $author->id) }}"
                                                     method="post">
                                                     @csrf
                                                     @method('delete')

@@ -33,6 +33,7 @@
                             <th scope="col">Category</th>
                             <th scope="col">Author</th>
                             <th scope="col">Total Books</th>
+                            <th scope="col">Sold Books</th>
                             <th scope="col">Book Source</th>
                             <th scope="col">Rack No.</th>
                             <th scope="col">Created_at</th>
@@ -49,11 +50,12 @@
                             <td>{{ $book->category }}</td>
                             <td>{{ $book->author }}</td>
                             <td>{{ $book->total_books }}</td>
+                            <td>{{ $book->borrows->count() }}</td>
                             <td>{{ $book->book_source }}</td>
                             <td>{{ $book->racks }}</td>
                             <td>{{ $book->created_at }}</td>
                             <td class="text-center text-success">
-                                <a href="{{ route('manage.books.edit', $book->id) }}" class="btn btn-success"><i
+                                <a href="{{ route('admin.manage.books.edit', $book->id) }}" class="btn btn-success"><i
                                         class="fas fa-edit"></i></a>
                             </td>
                             <td class="text-center text-danger">
@@ -64,7 +66,7 @@
                             </td>
                         </tr>
                         <!-- Modal -->
-                        <form action="{{ route('manage.books.destroy', $book->id) }}" method="POST">
+                        <form action="{{ route('admin.manage.books.destroy', $book->id) }}" method="POST">
                             @csrf
                             @method('delete')
 
