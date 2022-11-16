@@ -6,8 +6,6 @@ use App\Models\Book;
 use App\Models\BookBorrow;
 use App\Models\Cart;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
-
 class CartController extends Controller
 {
     public function addCart(Request $request, $id)
@@ -49,24 +47,35 @@ class CartController extends Controller
         $authId = auth()->user()->id;
         $cartLists = Cart::where('user_id', $authId)->where('status', 1)->get();
 
-
         foreach ($cartLists as $cartList) {
-            $borrowBook['cart_id'] = $cartList->id;
-            $borrowBook['book_id'] = $cartList->book_id;
-            $borrowBook['user_id'] = $cartList->user_id;
-            $borrowBook['status'] = 0;
-            $today = date("Y-m-d H:i:s");
-            $borrowBook['due_date'] = date( "Y-m-d H:i:s", strtotime( "$today +7 day" ));
-            $borrowBook['return_date'] = null;
-            BookBorrow::create($borrowBook);
+            $total_borrow_books = BookBorrow::where('book_id', $cartList->book_id)->where('status', 0)->count();
+            $max_books = Book::find($cartList->book_id);
 
-            $cart['status'] = 0;
-            Cart::where('id', $cartList->id)->update($cart);
+            if ($total_borrow_books < $max_books->total_books) {
+                $borrowBook['cart_id'] = $cartList->id;
+                $borrowBook['book_id'] = $cartList->book_id;
+                $borrowBook['user_id'] = $cartList->user_id;
+                $borrowBook['status'] = 0;
+                $today = date("Y-m-d H:i:s");
+                $borrowBook['due_date'] = date("Y-m-d H:i:s", strtotime("$today +7 day"));
+                $borrowBook['return_date'] = null;
+                BookBorrow::create($borrowBook);
+
+                $cart['status'] = 0;
+                Cart::where('id', $cartList->id)->update($cart);
+            }
+            $books[] = $max_books->title;
         }
-        return redirect('/');
+        if (!empty($books)) {
+            $books = implode(", ", $books);
+            return redirect('/')->with(['message' =>'<b>'. $books . '</b> out of stock!']);
+        } else {
+            return redirect('/');
+        }
     }
 
-    public function destroy($id){
+    public function destroy($id)
+    {
         Cart::where('id', $id)->delete();
         return redirect()->back()->with(['message' => 'Item has been removed successfully!']);
     }
@@ -75,6 +84,6 @@ class CartController extends Controller
     {
         $authId = auth()->user()->id;
         $myBooks = BookBorrow::where('user_id', $authId)->where('status', 0)->with('book')->get();
-        return view('orders.index',compact(['myBooks']));
+        return view('orders.index', compact(['myBooks']));
     }
 }
