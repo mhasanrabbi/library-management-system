@@ -9,7 +9,7 @@
                 <div class="row">
                     <div class="col">
                         <div class="alert alert-warning">
-                            {{ session('message') }}
+                            {!! session('message') !!}
                         </div>
                     </div>
                 </div>
