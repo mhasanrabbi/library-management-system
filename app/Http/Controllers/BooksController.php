@@ -142,4 +142,10 @@ class BooksController extends Controller
     //     return $book = Book::where('title', 'LIKE', '%' . $request->search . '%')->get();
     //     return view('books.index', compact('book'));
     // }
+
+    public function bookDetails($id)
+    {
+        $bookDetails = Book::with('rack')->find($id);
+        return view('books.details', compact('bookDetails'));
+    }
 }

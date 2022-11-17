@@ -27,7 +27,8 @@ class AuthorController extends Controller
     public function store(Request $request)
     {
         $formRequest = $request->validate([
-            'author_name' => 'required|min:4|max:30|unique:authors|regex:/^[a-zA-Z- ]*$/'
+            // 'author_name' => 'required|min:4|max:30|unique:authors|regex:/^[a-zA-Z- ]*$/',
+            'author_name' => 'required|min:4|max:30|unique:authors'
         ]);
 
         Author::create($formRequest);
