@@ -33,4 +33,9 @@ class Book extends Model
     {
         return $this->hasMany(BookBorrow::class)->where('status', 0);
     }
+
+    public function rack()
+    {
+        return $this->belongsTo(BookRack::class, 'racks', 'id');
+    }
 }

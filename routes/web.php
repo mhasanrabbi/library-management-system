@@ -110,3 +110,4 @@ Route::post('checkout/books', [CartController::class, 'checkoutBook'])->name('ch
 Route::get('carts/item/{id}', [CartController::class, 'destroy'])->name('carts.destroy');
 Route::get('show/my-books', [CartController::class, 'myBooks'])->name('my.books');
 
+Route::get('/bookDetails/{id}', [BooksController::class, 'bookDetails'])->name('book.details');

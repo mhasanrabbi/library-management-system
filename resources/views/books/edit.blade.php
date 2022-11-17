@@ -33,7 +33,7 @@
                     <div class="mb-3">
                         <div class="row">
                             <div class="col-4">
-                                <img src="{{ $book->image ? asset('storage/' . $book->image ) : asset('/images/no-image.png')}}" class="img-thumbnail rounded mx-auto d-block" alt="...">
+                                <img src="{{ $book->image ? asset('storage/' . $book->image ) : asset('/images/no-image.png')}}" class="img-thumbnail rounded mx-auto d-block" style="width: 200px; height: 200px;" alt="...">
 
                             </div>
                             <div class="col-6">
