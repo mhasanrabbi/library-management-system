@@ -41,7 +41,7 @@
             </ul>
         </li>
         <li>
-            <a href="#">About</a>
+            <a href="{{route('admin.books.track')}}">Books Track</a>
         </li>
         <li>
             <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">User Management</a>

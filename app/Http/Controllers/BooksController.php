@@ -66,6 +66,18 @@ class BooksController extends Controller
             $formRequest['image'] = $request->file('image')->store('images', 'public');
         }
 
+        //process 1
+        // $book = new Book();
+        // $book->title = $formRequest['title'];
+        // $book->description = $formRequest['description'];
+        // $book->save();
+
+        //process 2
+        // $book = new Book();
+        // $book->fill($formRequest);
+        // $book->save();
+
+        //process 3
         Book::create($formRequest);
 
         return redirect()->route('admin.manage.books.index')->with(['message' => 'Book added successfully!']);
