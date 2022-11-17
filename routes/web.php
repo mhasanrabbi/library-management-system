@@ -7,6 +7,7 @@ use App\Http\Controllers\RackController;
 use App\Http\Controllers\BooksController;
 use App\Http\Controllers\GuestController;
 use App\Http\Controllers\AuthorController;
+use App\Http\Controllers\BookLostDamageController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\PermissionController;
 use App\Http\Controllers\RoleController;
@@ -70,6 +71,10 @@ Route::middleware(['auth', 'role:admin'])->name('admin.')->prefix('admin')->grou
     Route::get('vendors/{id}/edit', [VendorsController::class, 'edit'])->name('vendors.edit');
     Route::put('/vendors/{id}', [VendorsController::class, 'update'])->name('vendors.update');
     Route::delete('/vendors/{id}', [VendorsController::class, 'destroy'])->name('vendors.destroy');
+
+    #books_lost&Damages
+    Route::get('lost/damages', [BookLostDamageController::class, 'index'])->name('books.track');
+    Route::post('search/books', [BookLostDamageController::class, 'show'])->name('search.books');
 
     # Authors (Kamrul)
     //show all authors

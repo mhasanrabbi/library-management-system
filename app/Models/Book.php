@@ -17,7 +17,6 @@ class Book extends Model
         'isbn',
         'category',
         'author',
-        'total_books',
         'book_source',
         'racks',
     ];
