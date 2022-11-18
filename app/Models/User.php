@@ -25,6 +25,7 @@ class User extends Authenticatable implements MustVerifyEmail
         'phone',
         'address',
         'password',
+        'membership_id'
     ];
 
     /**
@@ -46,7 +47,8 @@ class User extends Authenticatable implements MustVerifyEmail
         'email_verified_at' => 'datetime',
     ];
 
-    public function borrow_books(){
+    public function borrow_books()
+    {
         return $this->hasMany(BookBorrow::class);
     }
 }
