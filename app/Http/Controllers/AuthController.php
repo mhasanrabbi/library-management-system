@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Helpers\Helper;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -35,12 +36,18 @@ class AuthController extends Controller
             'password' => 'required|confirmed|min:6'
         ]);
 
+        $membership_id = Helper::IDGenerator(new User, 'membership_id', 5, 'LMS');
+
         $formData['password'] = bcrypt($formData['password']);
+        $formData['membership_id'] = $membership_id;
 
         // dd($formData);
+
         $user = User::create($formData);
         $user->assignRole('user');
-        // dd($user->assignRole('user'));
+
+
+        // dd($user);
         return redirect()->route('user.login');
     }
 

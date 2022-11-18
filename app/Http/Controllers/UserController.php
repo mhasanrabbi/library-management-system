@@ -81,7 +81,7 @@ class UserController extends Controller
 
     public function destroy(User $user)
     {
-        dd($user);
+        // dd($user);
         if ($user->hasRole('admin')) {
             return back()->with('message', 'You are an admin');
         }
@@ -89,5 +89,5 @@ class UserController extends Controller
         $user->delete();
 
         return back()->with('message', 'User deleted');
-        }
+    }
 }
