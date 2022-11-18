@@ -44,19 +44,21 @@ class SendExpireDateEmails extends Command
         // send email
 
         foreach ($data as $userId) {
-            // $this->sendEmailToUser($userId);
+            $this->sendEmailToUser($userId);
         }
 
         // return Command::SUCCESS;
         // dd($userId);
-        dd(User::all());
+        // dd(User::all());
     }
 
-    // private function sendEmailToUser($userId)
-    // {
-    //     dd(User::find($userId));
-    //     $user = User::find($userId);
+    private function sendEmailToUser($userId)
+    {
+        // dd(User::find($userId));
 
-    //     Mail::to($user)->send(new ReminderEmailDigest());
-    // }
+        # ERROR HERE
+        $user = User::find($userId);
+
+        Mail::to($user)->send(new ReminderEmailDigest());
+    }
 }
