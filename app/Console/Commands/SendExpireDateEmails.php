@@ -43,8 +43,8 @@ class SendExpireDateEmails extends Command
         // dd($data);
         // send email
 
-        foreach ($data as $userId) {
-            $this->sendEmailToUser($userId);
+        foreach ($data as $key => $userId) {
+            $this->sendEmailToUser($key, $userId);
         }
 
         // return Command::SUCCESS;
@@ -52,13 +52,14 @@ class SendExpireDateEmails extends Command
         // dd(User::all());
     }
 
-    private function sendEmailToUser($userId)
+    private function sendEmailToUser($key, $userId)
     {
-        // dd(User::find($userId));
-
+        // dd(User::all());
+        // dd($userId);
         # ERROR HERE
-        $user = User::find($userId);
+        $user = User::find($key);
 
-        Mail::to($user)->send(new ReminderEmailDigest());
+
+        Mail::to($user)->send(new ReminderEmailDigest($userId));
     }
 }

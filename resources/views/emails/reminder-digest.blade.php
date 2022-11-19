@@ -1,12 +1,15 @@
-<x-mail::message>
-# Your book due date is over. Please return your due books.
+@component('mail::message')
+# You have some reminders to follow up. Below are their details:
 
-The body of your message.
-
-<x-mail::button :url="''">
-Button Text
-</x-mail::button>
+@component('mail::table')
+|Reminder|Lead name|Phone|
+|:-------|:--------|:----|
+@foreach($userId as $reminder)
+{{-- {{dd($reminder)}} --}}
+|{{$reminder['book_id']}}|{{$reminder['user_id']}}|{{$reminder['cart_id']}}
+@endforeach
+@endcomponent
 
 Thanks,<br>
 {{ config('app.name') }}
-</x-mail::message>
+@endcomponent

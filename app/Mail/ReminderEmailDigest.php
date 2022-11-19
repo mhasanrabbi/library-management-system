@@ -13,13 +13,16 @@ class ReminderEmailDigest extends Mailable implements ShouldQueue
 {
     use Queueable, SerializesModels;
 
+    private $userId;
+
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct($userId)
     {
+        $this->userId = $userId;
         //
     }
 
@@ -40,11 +43,17 @@ class ReminderEmailDigest extends Mailable implements ShouldQueue
      *
      * @return \Illuminate\Mail\Mailables\Content
      */
-    public function content()
+    // public function content()
+    // {
+    //     return new Content(
+    //         markdown: 'emails.reminder-digest'
+    //     );
+    // }
+
+    public function build()
     {
-        return new Content(
-            markdown: 'emails.reminder-digest',
-        );
+        return $this->markdown('emails.reminder-digest')
+            ->with('userId', $this->userId);
     }
 
     /**

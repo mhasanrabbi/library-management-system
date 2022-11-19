@@ -29,6 +29,7 @@ class Kernel extends ConsoleKernel
         //         $this->sendMail($book->user_id);
         //     }
         // })->daily();
+        $schedule->command('date:emails --force')->daily();
     }
 
     // public function sendMail($user_id)
