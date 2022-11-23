@@ -6,6 +6,7 @@ use App\Models\Book;
 use App\Models\BookBorrow;
 use App\Models\Cart;
 use Illuminate\Http\Request;
+
 class CartController extends Controller
 {
     public function addCart(Request $request, $id)
@@ -68,7 +69,7 @@ class CartController extends Controller
         }
         if (!empty($books)) {
             $books = implode(", ", $books);
-            return redirect('/')->with(['message' =>'<b>'. $books . '</b> out of stock!']);
+            return redirect('/')->with(['message' => '<b>' . $books . '</b> out of stock!']);
         } else {
             return redirect('/');
         }
@@ -83,7 +84,15 @@ class CartController extends Controller
     public function myBooks()
     {
         $authId = auth()->user()->id;
+        // $myBooks = BookBorrow::whereDate('due_date', '<', today())->update[[]]
         $myBooks = BookBorrow::where('user_id', $authId)->where('status', 0)->with('book')->get();
+        return view('orders.index', compact(['myBooks']));
+    }
+    public function  bookStatus()
+    {
+        $authId = auth()->user()->id;
+
+        $myBooks = BookBorrow::where('user_id', $authId)->whereDate('due_date', '<', today())->update(['status' => '1']);
         return view('orders.index', compact(['myBooks']));
     }
 }
