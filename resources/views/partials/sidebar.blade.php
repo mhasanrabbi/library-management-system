@@ -1,18 +1,18 @@
 <nav id="sidebar">
-    <div class="sidebar-header">
-        <h3>এসো বই পড়ি</h3>
+    <div class="sidebar-header text-center">
+        <a href="{{'/'}}"><img style="height: 50px; width: 180px;" src="{{asset('assets/img/lms.png')}}" alt=""></a>
     </div>
 
     <ul class="list-unstyled components">
-        <p>Dashboard</p>
+        <p><a href="/">Dashboard</a></p>
         <li class="active">
             <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Home</a>
             <ul class="collapse list-unstyled" id="homeSubmenu">
                 <li>
-                    <a href="#">Books</a>
+                    <a href="{{ route('admin.manage.books.index')}}">Books</a>
                 </li>
                 <li>
-                    <a href="#">Authors</a>
+                    <a href="{{ route('admin.authors.index') }}">Authors</a>
                 </li>
                 <li>
                     <a href="#">Categories</a>
@@ -27,10 +27,13 @@
                     <a href="#">Book Source</a>
                 </li>
                 <li>
+                    <a href="{{ route('admin.rack') }}">Rack</a>
+                </li>
+                <li>
                     <a href="#">Assets</a>
                 </li>
                 <li>
-                    <a href="#">Vendor</a>
+                    <a href="{{route('admin.vendors.index')}}">Vendor</a>
                 </li>
                 <li>
                     <a href="#">Staff Members</a>
@@ -38,19 +41,20 @@
             </ul>
         </li>
         <li>
-            <a href="#">About</a>
+            <a href="{{route('admin.books.track')}}">Books Track</a>
         </li>
         <li>
-            <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">User</a>
+            <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">User Management</a>
             <ul class="collapse list-unstyled" id="pageSubmenu">
                 <li>
-                    <a href="#">Log In</a>
+                    <a href="{{url('admin/users')}}">Users</a>
                 </li>
                 <li>
-                    <a href="#">Register</a>
+                    <a href="{{url('admin/roles')}}">Roles</a>
                 </li>
                 <li>
-                    <a href="#">User Profile</a>
+                    <a href="{{url('admin/permissions')}}">Permissions</a>
+
                 </li>
             </ul>
         </li>

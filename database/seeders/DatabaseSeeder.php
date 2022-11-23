@@ -3,6 +3,8 @@
 namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+
+use App\Models\Author;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -14,6 +16,7 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
+<<<<<<< HEAD
         // \App\Models\User::factory(10)->create();
 
         // \App\Models\User::factory()->create([
@@ -21,5 +24,11 @@ class DatabaseSeeder extends Seeder
         //     'email' => 'test@example.com',
         // ]);
         \App\Models\Publisher::factory(10)->create();
+=======
+        $this->call(RoleSeeder::class);
+        $this->call(AdminSeeder::class);
+        \App\Models\Book::factory(100)->create();
+        \App\Models\Author::factory(20)->create();
+>>>>>>> main
     }
 }
